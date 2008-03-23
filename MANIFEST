@@ -1,4 +1,4 @@
-.cvsignore
+.svnignore
 Build.PL
 Changes
 lib/Module/Starter/Plugin/CGIApp.pm
