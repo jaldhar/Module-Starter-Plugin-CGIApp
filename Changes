@@ -1,0 +1,6 @@
+Revision history for Module-Starter-Plugin-CGIApp
+
+0.01    Sun Mar 23 02:18:51 EDT 2008
+        First version, released on an unsuspecting world.
+        Creating modules that use ExtUtils::MakeMaker or Module::Install
+        is probably buggy.  Please send bug reports and patches.
