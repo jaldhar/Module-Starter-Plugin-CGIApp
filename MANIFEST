@@ -24,6 +24,7 @@ MANIFEST
 MANIFEST.SKIP
 META.yml
 README
+script/cgiapp-starter
 t/00-signature.t
 t/01-load.t
 t/perl-critic.t
