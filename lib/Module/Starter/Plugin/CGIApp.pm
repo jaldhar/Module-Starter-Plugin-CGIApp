@@ -117,7 +117,6 @@ sub create_distro {
 
     push @files, $self->create_t(@modules);
     push @files, $self->create_tmpl();
-    push @files, $self->create_cvsignore;
     my %build_results = $self->create_build();
     push @files, @{ $build_results{files} };
 
@@ -325,20 +324,6 @@ sub perlcriticrc_guts {
     my %options;
 
     my $template = $self->{templates}{perlcriticrc};
-    return $self->render( $template, \%options );
-}
-
-=head2 cvsignore_guts
-
-Implements the creation of a C<.cvsignore> file.
-
-=cut
-
-sub cvsignore_guts {
-    my $self = shift;
-    my %options;
-
-    my $template = $self->{templates}{cvsignore};
     return $self->render( $template, \%options );
 }
 

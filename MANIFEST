@@ -6,7 +6,6 @@ lib/Module/Starter/Plugin/CGIApp/templates/01-load.t
 lib/Module/Starter/Plugin/CGIApp/templates/Build.PL
 lib/Module/Starter/Plugin/CGIApp/templates/boilerplate.t
 lib/Module/Starter/Plugin/CGIApp/templates/Changes
-lib/Module/Starter/Plugin/CGIApp/templates/cvsignore
 lib/Module/Starter/Plugin/CGIApp/templates/Makefile.PL
 lib/Module/Starter/Plugin/CGIApp/templates/MANIFEST
 lib/Module/Starter/Plugin/CGIApp/templates/MANIFEST.SKIP
