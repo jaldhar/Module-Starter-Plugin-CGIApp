@@ -45,7 +45,7 @@ my $builder = $subclass->new(
         'lib/Module/Starter/Plugin/CGIApp/templates/Makefile.PL' => [],
     },
     script_files            => {
-        'script/cgiapp_starter' => [],
+        'script/cgiapp-starter' => [],
     },
     tmpl_files          => eval { 
         my %tmpls; File::Find::find(
