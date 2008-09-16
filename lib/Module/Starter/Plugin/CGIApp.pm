@@ -124,6 +124,7 @@ sub create_distro {
     push @files, $self->create_README( $build_results{instructions} );
     push @files, $self->create_MANIFEST_SKIP;
     push @files, $self->create_perlcriticrc;
+    push @files, $self->create_server_pl;
     push @files, 'MANIFEST';
     $self->create_MANIFEST( grep { $_ ne 't/boilerplate.t' } @files );
 
@@ -170,6 +171,22 @@ sub create_perlcriticrc {
     $self->progress("Created $fname");
 
     return 't/perlcriticrc';
+}
+
+=head2 create_server_pl( )
+
+This method creates C<server.pl> in the distribution's root directory.
+
+=cut
+
+sub create_server_pl {
+    my $self = shift;
+
+    my $fname = File::Spec->catfile( $self->{basedir}, 'server.pl' );
+    $self->create_file( $fname, $self->server_pl_guts() );
+    $self->progress("Created $fname");
+                                                    
+    return 'server.pl';
 }
 
 =head2 create_tmpl( )
@@ -324,6 +341,21 @@ sub perlcriticrc_guts {
     my %options;
 
     my $template = $self->{templates}{perlcriticrc};
+    return $self->render( $template, \%options );
+}
+
+=head2 server_pl_guts
+
+Implements the creation of a C<server.pl> file.
+
+=cut
+
+sub server_pl_guts {
+    my $self = shift;
+    my %options;
+    $options{main_module} = $self->{main_module};
+    
+    my $template = $self->{templates}{'server.pl'};
     return $self->render( $template, \%options );
 }
 
