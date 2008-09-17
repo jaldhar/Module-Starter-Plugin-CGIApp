@@ -48,6 +48,10 @@ This module subclasses L<Module::Starter::Plugin::Template> which in turn
 subclasses L<Module::Starter::Simple>. This document only describes the methods
 which are overriden from those modules or are new.
 
+Only developers looking to extend this module need to read this. If you just 
+want to use L<Module::Starter::Plugin::CGIApp>, read the docs for 
+L<cgiapp-starter> or L<titanium-starter> instead.
+
 =head1 METHODS
 
 =head2 new ( %args )
@@ -212,10 +216,27 @@ This method is subclassed from L<Module::Starter::Plugin::Template>.
 
 It is given an L<HTML::Template> and options and returns the resulting document.
 
-Data in the C<Module::Starter> object which represents an array is transformed
-into an array of hashes with one key called C<$data_item> in order to make it
-usable in an L<HTML::Template> C<TMPL_LOOP>.
+Data in the C<Module::Starter> object which represents a reference to an array 
+@foo is transformed into an array of hashes with one key called 
+C<$foo_item> in order to make it usable in an L<HTML::Template> C<TMPL_LOOP>.
+For example:
 
+    $data = ['a'. 'b', 'c'];
+
+would become:
+
+    $data = [
+        { data_item => 'a' },
+        { data_item => 'b' },
+        { data_item => 'c' },
+    ];
+    
+so that in the template you could say:
+
+    <tmpl_loop data>
+        <tmpl_var data_item>
+    </tmpl_loop>
+    
 =cut
 
 sub render {
@@ -435,8 +456,9 @@ under the same terms as Perl itself.
 
 =head1 SEE ALSO
 
-L<module-starter>, L<Module::Starter>, L<Module::Starter::Simple>, 
-L<Module::Starter::Plugin::Template>. L<CGI::Application>, L<HTML::Template>
+L<cgiapp-starter>, L<titanium-starter>, L<Module::Starter>, 
+L<Module::Starter::Simple>, L<Module::Starter::Plugin::Template>. 
+L<CGI::Application>, L<Titanium>, L<HTML::Template>
 
 =cut
 
