@@ -14,7 +14,7 @@ $ENV{PATH} = undef;
 my $dir  = untaint_path( cwd . '/t',       '$dir' );
 my $perl = untaint_path( $EXECUTABLE_NAME, '$perl' );
 
-qx{ MODULE_STARTER_DIR=$dir/t $perl ./script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas"  --email=jaldhar\@braincells.com --dir="$dir/Foo" --mb };
+qx{ MODULE_STARTER_DIR=$dir $perl ./script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas"  --email=jaldhar\@braincells.com --dir="$dir/Foo" --mb };
 
 my @expected_files = (
     'Foo/lib/Foo.pm',       'Foo/lib/Foo/templates/runmode1.html',
