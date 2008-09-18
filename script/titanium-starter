@@ -1,0 +1,109 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+titanium-starter - creates a skeleton Titanium project
+
+=cut
+
+use warnings;
+use strict;
+
+use Module::Starter qw(
+        Module::Starter::Simple
+        Module::Starter::Plugin::Template
+        Module::Starter::Plugin::CGIApp
+);
+
+# Provide a sane defailt
+use File::Basename;
+use File::Spec;
+unless ($ENV{MODULE_TEMPLATE_DIR}) {
+    $ENV{MODULE_TEMPLATE_DIR} = 
+        File::Spec->catdir(  dirname($INC{'Module/Starter/Plugin/CGIApp.pm'}), 'CGIApp','templates/titanium' );
+}
+
+use Module::Starter::App;
+Module::Starter::App->run;
+
+=head1 SYNOPSIS
+
+ titanium-starter --module=MyApp --author="Andy Lester" --email=andy@petdance.com
+
+Result:
+
+    Foo/lib/Foo.pm
+    Foo/lib/Foo/templates/runmode1.html
+    Foo/t/pod-coverage.t
+    Foo/t/pod.t
+    Foo/t/test-app.t
+    Foo/t/01-load.t
+    Foo/t/perl-critic.t
+    Foo/t/boilerplate.t
+    Foo/t/00-signature.t
+    Foo/t/perlcriticrc
+    Foo/Makefile.PL
+    Foo/Changes
+    Foo/README
+    Foo/MANIFEST.SKIP
+    Foo/MANIFEST
+
+
+Options:
+
+    --module=module  Module name 
+    --dir=dirname    Directory name to create new module in (optional)
+
+    --builder=module Build with 'ExtUtils::MakeMaker' or 'Module::Build'
+    --eumm           Same as --builder=ExtUtils::MakeMaker
+    --mb             Same as --builder=Module::Build
+    --mi             Same as --builder=Module::Install
+
+    --author=name    Author's name (required)
+    --email=email    Author's email (required)
+    --license=type   License under which the module will be distributed
+                     (default is the same license as perl)
+
+    --verbose        Print progress messages while working
+    --force          Delete pre-existing files if needed
+
+    --help           Show this message
+
+=head1 DESCRIPTION
+
+Set up the skeleton of a Titanium-based project, including a module,
+some templates and some automated tests. 
+
+By default the skeleton files will come within the C<templates/titanium/> 
+directory where Module::Starter::Plugin::CGIApp is stored. 
+
+Multiple --builder options may be supplied to produce the files for multiple
+builders.
+
+=head1 CONFIGURATION
+
+You may set new defaults in a config file:
+
+ author: Mark Stosberg
+ email: mark@summersault.com
+ template_dir: ~/.module-starter/titanium/templates
+
+titanium-starter will look for a configuration file before reading its command
+line parameters.  The default location is C<$HOME/.module-starter/config> but
+if the MODULE_STARTER_DIR environment variable is set, titanium-starter will 
+look for C<config> in that directory.
+
+The configuration file is just a list of names and values, separated by colons.
+Values that take lists are just space separated.  A sample configuration file
+might read:
+
+ author: Ricardo SIGNES
+ email:  rjbs@cpan.org
+ plugins: Module::Starter::Simple Module::Starter::Plugin::XYZ
+ xyz_option: red green blue
+
+This format may become more elaborate in the future, but a file of this type
+should remain valid.
+
+=cut
+
