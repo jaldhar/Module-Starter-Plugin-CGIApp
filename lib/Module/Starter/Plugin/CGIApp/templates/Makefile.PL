@@ -17,7 +17,6 @@ WriteMakefile(
         'HTML::Template'                => 0,
         'Pod::Coverage'                 => 0.18,
         'Pod::Usage'                    => 0,
-        'Test::Builder'                 => 0,
         'Test::More'                    => 0,
         'Test::Pod'                     => 1.22,
         'Test::Pod::Coverage'           => 1.08,
