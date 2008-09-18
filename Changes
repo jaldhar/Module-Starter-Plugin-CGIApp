@@ -1,5 +1,26 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.05    Thu Sep 27 02:16:22 EDT 2008
+        Added cgiapp_starter script thanks to Mark Stosberg 
+        <mark@summersault.com>
+        
+        Building with Module::Install and ExtUtils::MakeMaker should work 
+        properly now.
+        
+        Added some tests so we can check if the modules we are building are 
+        actually complete.
+
+        Removed cvsignore from the default templates.
+        
+        Generated distributions will now include a CGI::Application::Server 
+        script to use as a development server.
+
+        Generated distributions no longer require Test::Builder.
+        
+        Added a set of templates that use Titanium instead of CGI::Application.
+        Also added titanium-starter which works like cgiapp-starter but uses 
+        the Titanium templates.
+        
 0.01    Sun Mar 23 02:18:51 EDT 2008
         First version, released on an unsuspecting world.
         Creating modules that use ExtUtils::MakeMaker or Module::Install
