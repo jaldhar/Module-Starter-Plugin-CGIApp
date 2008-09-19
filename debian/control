@@ -1,7 +1,7 @@
 Source: libmodule-starter-plugin-cgiapp-perl
 Section: perl
 Priority: optional
-Build-Depends: debhelper (>= 5), libmodule-build-perl, libmodule-starter-perl, libhtml-template-perl, libtest-simple-perl, libtest-pod-perl (>= 1.22), libtest-pod-coverage-perl (>= 1.08)
+Build-Depends: debhelper (>= 5), libmodule-build-perl, libmodule-starter-perl, libhtml-template-perl, libtest-pod-perl (>= 1.22), libtest-pod-coverage-perl (>= 1.08)
 Build-Depends-Indep: perl (>= 5.6.10-12)
 Maintainer: Jaldhar H. Vyas <jaldhar@debian.org>
 Standards-Version: 3.8.0
