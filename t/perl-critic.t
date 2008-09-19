@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use English qw( -no_match_vars );
 use File::Find qw();
+use Test::More;
 
 if ( !$ENV{TEST_AUTHOR} ) {
     my $msg = 'Author test.  Set $ENV{TEST_AUTHOR} to a true value to run.';
