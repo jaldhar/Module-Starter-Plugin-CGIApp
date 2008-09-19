@@ -10,7 +10,7 @@ Homepage: http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp/
 Package: libmodule-starter-plugin-cgiapp-perl
 Architecture: all
 Depends: ${perl:Depends}, ${misc:Depends}, libmodule-starter-perl, libhtml-template-perl
-Description: template based module starter for CGI apps.
+Description: template based module starter for CGI apps
  This is a plugin for L<Module::Starter> that builds you a skeleton
  CGI::Application module with all the extra files needed to package it for
  CPAN. You can customize the output using HTML::Template.
