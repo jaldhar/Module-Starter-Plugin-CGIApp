@@ -1,0 +1,5 @@
+libmodule-starter-plugin-cgiapp-perl (0.05-1) unstable; urgency=low
+
+  * Initial Release. (Closes: #499478)
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 18 Sep 2008 22:36:44 -0400

@@ -1,0 +1,20 @@
+This is the debian package for the Module-Starter-Plugin-CGIApp module.
+It was created by Jaldhar H. Vyas <jaldhar@debian.org> using dh-make-perl.
+
+It was downloaded from http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp/
+
+The upstream author is: Jaldhar H. Vyas <jaldhar@braincells.com>.
+
+Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.
+
+Perl is distributed under your choice of the GNU General Public License or
+the Artistic License.  On Debian GNU/Linux systems, the complete text of the
+GNU General Public License can be found in `/usr/share/common-licenses/GPL'
+and the Artistic Licence in `/usr/share/common-licenses/Artistic'.
+
+
+The Debian packaging is (C) 2008, Jaldhar H. Vyas <jaldhar@debian.org> and
+is licensed under the same terms as the software itself (see above).
