@@ -47,6 +47,7 @@ Result:
     Foo/README
     Foo/MANIFEST.SKIP
     Foo/MANIFEST
+    Foo/server.pl
 
 
 Options:

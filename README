@@ -1,8 +1,8 @@
 Module-Starter-Plugin-CGIApp
 
-This is a plugin for Module::Starter that builds you a skeleton CGI::Application
-module with all the extra files needed to package it for CPAN. You can customize 
-the output using HTML::Template.
+This is a plugin for Module::Starter that builds you a skeleton 
+CGI::Application module with all the extra files needed to package it for 
+CPAN. You can customize the output using HTML::Template.
 
 INSTALLATION
 
@@ -29,10 +29,10 @@ At build time you will need the above modules plus the following if you want
 to run all the tests
 
 Module-Signature
-Test-Builder
 Test-Pod 1.22
 Test-Pod-Coverage 1.04
-Test-Perl-Critic (This test will only run if the env var TEST_AUTHOR = 1)
+Test-Perl-Critic (This test will only run if the env var TEST_AUTHOR has a 
+                  true value)
 
 They are all available on CPAN (http://www.cpan.org)
 
