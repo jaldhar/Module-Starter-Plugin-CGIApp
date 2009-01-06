@@ -1,6 +1,6 @@
 ---
 name: Module-Starter-Plugin-CGIApp
-version: 0.01
+version: 0.07
 author:
   - 'Jaldhar H. Vyas <jaldhar@braincells.com>'
 abstract: template based module starter for CGI apps.
@@ -19,14 +19,13 @@ build_requires:
   Module::Signature: 0
   Pod::Coverage: 0.18
   Pod::Usage: 0
-  Test::Builder: 0
   Test::More: 0
   Test::Pod: 1.22
   Test::Pod::Coverage: 1.08
 provides:
   Module::Starter::Plugin::CGIApp:
     file: lib/Module/Starter/Plugin/CGIApp.pm
-    version: 0.01
+    version: 0.07
 generated_by: Module::Build version 0.280801
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

@@ -10,13 +10,31 @@ If you have the Module::Signature module installed, you can verify the
 integrity of this distribution by typing:
 
     cpansign -v
+
+Module::Signature requires GnuPG which you can get from: 
+http://www.gnupg.org/download/
+A binary version for Windows is available from that page.
         
 Then to install this module, run the following commands:
+
+    perl Build.pl
+    ./Build
+    ./Build test
+    ./Build install
+    
+On Windows you don't need to type the preliminary ./
+
+Alternatively, you can do:
 
     perl Makefile.PL
     make
     make test
     make install
+
+If you are using Windows and you don't have a make utility, you can download 
+nmake from:
+http://download.microsoft.com/download/vc15/patch/1.52/w95/en-us/nmake15.exe
+(Replace make with nmake in the instructions above if you are using it.)
 
 DEPENDENCIES
 

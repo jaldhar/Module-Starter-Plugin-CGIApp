@@ -50,17 +50,17 @@ TODO: change all these values to ones more appropriate for your application.
 =cut
 
 sub setup {
-    my ($c) = @_;
+    my ($self) = @_;
 
-    $c->start_mode('runmode1');
-    $c->error_mode('runmode1');
-    $c->run_modes( [qw/ runmode1 /] );
-    if ( !$c->tmpl_path ) {
+    $self->start_mode('runmode1');
+    $self->error_mode('runmode1');
+    $self->run_modes( [qw/ runmode1 /] );
+    if ( !$self->tmpl_path ) {
         ( my $tp = '<tmpl_var module>' ) =~ s/::/\//gmx;
         ( $tp = $INC{"$tp.pm"} ) =~ s/.pm//mx;
-        $c->tmpl_path("$tp/templates");
+        $self->tmpl_path("$tp/templates");
     }
-    $c->run_modes( AUTOLOAD => 'runmode1' );
+    $self->run_modes( AUTOLOAD => 'runmode1' );
     return;
 }
 
@@ -83,9 +83,9 @@ for your application.
 =cut
 
 sub runmode1 {
-    my ($c) = @_;
+    my ($self) = @_;
 
-    my $template = $c->load_tmpl;
+    my $template = $self->load_tmpl;
     $template->param( message => 'Hello world!' );
     return $template->output;
 }
@@ -100,7 +100,7 @@ for your application.
 =cut
 
 sub function1 {
-    my ($c) = @_;
+    my ($self) = @_;
 
     return 1;
 }

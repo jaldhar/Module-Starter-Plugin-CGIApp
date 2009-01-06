@@ -46,6 +46,7 @@ script/cgiapp-starter
 script/titanium-starter
 t/00-signature.t
 t/01-load.t
+t/common.pm
 t/extutils-makemaker.t
 t/module-build.t
 t/module-install.t

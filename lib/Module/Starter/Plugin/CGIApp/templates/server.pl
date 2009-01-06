@@ -9,6 +9,7 @@ my $app = <tmpl_var main_module>->new(PARAMS => {
 });
 
 my $server = CGI::Application::Server->new();
+$server->document_root('./t/www');
 $server->entry_points({
     '/index.cgi' => $app,
 });

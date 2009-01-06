@@ -36,11 +36,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-Version 0.05
+Version 0.07
 
 =cut
 
-our $VERSION = '0.05';
+our $VERSION = '0.07';
 
 =head1 DESCRIPTION
 
@@ -189,8 +189,35 @@ sub create_server_pl {
     my $fname = File::Spec->catfile( $self->{basedir}, 'server.pl' );
     $self->create_file( $fname, $self->server_pl_guts() );
     $self->progress("Created $fname");
-                                                    
+
     return 'server.pl';
+}
+
+=head2 create_t( @modules )
+
+This method creates a bunch of *.t files.  I<@modules> is a list of all modules
+in the distribution.
+
+=cut
+
+sub create_t {
+    my ( $self, @modules ) = shift;
+
+    my %t_files = $self->t_guts(@modules);
+
+    my @files = map { $self->_create_t( $_, $t_files{$_} ) } keys %t_files;
+
+    # This next part is for the static files dir t/www
+    my @dirparts = ( $self->{basedir}, 't', 'www' );
+    my $twdir = File::Spec->catdir(@dirparts);
+    if ( not -d $twdir ) {
+        local @ARGV = $twdir;
+        mkpath();
+        push @files, $twdir;
+        $self->progress("Created $twdir");
+    }
+
+    return @files;
 }
 
 =head2 create_tmpl( )
@@ -375,7 +402,7 @@ sub server_pl_guts {
     my $self = shift;
     my %options;
     $options{main_module} = $self->{main_module};
-    
+
     my $template = $self->{templates}{'server.pl'};
     return $self->render( $template, \%options );
 }

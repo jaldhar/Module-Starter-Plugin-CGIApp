@@ -5,21 +5,23 @@ WriteMakefile
           'NAME' => 'Module::Starter::Plugin::CGIApp',
           'VERSION_FROM' => 'lib/Module/Starter/Plugin/CGIApp.pm',
           'PREREQ_PM' => {
-                           'ExtUtils::Command' => '0',
-                           'File::Basename' => '0',
-                           'File::Spec' => '0',
-                           'HTML::Template' => '0',
-                           'Module::Signature' => '0',
-                           'Module::Starter' => '0',
+                           'ExtUtils::Command' => 0,
+                           'File::Basename' => 0,
+                           'File::Spec' => 0,
+                           'HTML::Template' => 0,
+                           'Module::Signature' => 0,
+                           'Module::Starter' => 0,
                            'Pod::Coverage' => '0.18',
-                           'Pod::Usage' => '0',
-                           'Test::Builder' => '0',
-                           'Test::More' => '0',
+                           'Pod::Usage' => 0,
+                           'Test::More' => 0,
                            'Test::Pod' => '1.22',
                            'Test::Pod::Coverage' => '1.08'
                          },
           'INSTALLDIRS' => 'site',
-          'EXE_FILES' => [],
+          'EXE_FILES' => [
+                           'script/cgiapp-starter',
+                           'script/titanium-starter'
+                         ],
           'PL_FILES' => {}
         )
 ;

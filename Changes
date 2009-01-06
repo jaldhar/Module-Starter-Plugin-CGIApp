@@ -1,5 +1,22 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.07    Mon Jan  5 17:24:30 EST 2009
+        No longer build depends on Test::Builder.
+        
+        By popular demand, templates use $self instead of $c.
+        
+        Distributions now include a directory, t/www for static files.
+        server.pl has been updated to use it.
+        
+        Some fixes to tests so the module will build correctly on Windows
+        thanks to David Scott <leapingfrog@yahoo.com>
+
+        Some extra documentation for building on Windows added.
+
+        HELP WANTED: despite my best efforts, I am not sure this module is 
+        working correctly under Windows.  If you find problems, please
+        submit a bug report, or even better, a fix.
+
 0.05    Thu Sep 18 22:24:00 EDT 2008
         Added cgiapp_starter script thanks to Mark Stosberg 
         <mark@summersault.com>
