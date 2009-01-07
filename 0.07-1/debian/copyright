@@ -1,0 +1,27 @@
+Format-Specification:
+    http://wiki.debian.org/Proposals/CopyrightFormat?action=recall&rev=196
+Upstream-Maintainer: Jaldhar H. Vyas <jaldhar@braincells.com>
+Upstream-Source: http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp/
+Upstream-Name: Module-Starter-Plugin-CGIApp
+
+Files: *
+Copyright: © 2008,  Consolidated Braincells Inc. All Rights Reserved.
+License: GPL-1+ | Artistic
+
+Files: debian/*
+Copyright: © 2008-2009, Jaldhar H. Vyas <jaldhar@debian.org> 
+License: GPL-1+ | Artistic
+
+License: GPL-1+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 1, or (at your option)
+    any later version.
+    On Debian GNU/Linux systems, the complete text of the GNU General
+    Public License can be found in `/usr/share/common-licenses/GPL'
+
+License: Artistic
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the Artistic License, which comes with Perl.
+    On Debian GNU/Linux systems, the complete text of the Artistic License
+    can be found in `/usr/share/common-licenses/Artistic'
