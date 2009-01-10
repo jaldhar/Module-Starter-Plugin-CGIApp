@@ -1,4 +1,4 @@
-#!perl -T
+#!perl
 #
 # $Id$
 #
@@ -33,9 +33,7 @@ foreach my $file (@expected_files) {
 }
 
 File::Find::find(
-    {   untaint => 1,
-        untaint_pattern => $filespec,
-        no_chdir => 1,
+    {   no_chdir => 1,
         wanted  => sub {
             if ( -e $File::Find::name ) {
                 my $name = $File::Find::name;

@@ -19,54 +19,21 @@ Version 1.0
 
 =cut
 
-our $VERSION = '1.0';
+our $VERSION = '1.1';
 
-our @EXPORT = qw/ $cgiapp_starter $dir $filespec $root &untaint_path /;
-
-our $filespec;
-if ($OSNAME =~ /win/i) {
-    $filespec =
-        qr{ (\A(?:[[:alpha:]]:)?[ \\ \. \- [:space:] [:word:] ]+)\z }msx;
-}
-else {
-    $filespec = qr{ (\A[- + @ [:word:] . / ]+)\z }msx;
-}
+our @EXPORT = qw/ $cgiapp_starter $dir $root /;
 
 # q{} q{} ensures an extra directory seperator at the end.
-our $dir  = untaint_path( File::Spec->catfile(cwd, 't', q{}, q{}), '$dir'  );
+our $dir  = File::Spec->catfile(cwd, 't', q{}, q{});
 
-our $root = untaint_path( File::Spec->catdir($dir, 'Foo'),         '$root' );
-
-our $perl = untaint_path( $EXECUTABLE_NAME,                        '$perl' );
-if ($OSNAME =~ /win/i) {
-    # Perl must be able to find cmd.exe, so add %WINDOWS%\system32 to path
-    my $system32_dir =
-         untaint_path( File::Spec->catdir($ENV{'SystemRoot'},'system32'),
-            '$system32_dir'
-    );
-    $ENV{'PATH'} = $system32_dir;
-}
-else {
-    # Path can be empty on UNIX.
-    $ENV{PATH} = undef;
-}
+our $root = File::Spec->catdir($dir, 'Foo');
 
 our $cgiapp_starter;
 if ($OSNAME =~ /win/i) {
-    $cgiapp_starter = qq{ set MODULE_STARTER_DIR=$dir && cd $dir && $perl -Mblib ../script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas" --email=jaldhar\@braincells.com };
+    $cgiapp_starter = qq{ set MODULE_STARTER_DIR=$dir && cd $dir && $EXECUTABLE_NAME -Mblib ../script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas" --email=jaldhar\@braincells.com };
 }
 else {
-    $cgiapp_starter = qq{ MODULE_STARTER_DIR=$dir ; export MODULE_STARTER_DIR ; cd $dir ; $perl -Mblib ../script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas" --email=jaldhar\@braincells.com };
-}
-
-sub untaint_path {
-    my ( $path, $description ) = @_;
-
-    if ( !( $path =~ $filespec ) ) {
-         die "$description is tainted.\n";
-    }
-
-    return $1;
+    $cgiapp_starter = qq{ MODULE_STARTER_DIR=$dir ; export MODULE_STARTER_DIR ; cd $dir ; $EXECUTABLE_NAME -Mblib ../script/cgiapp-starter --module=Foo --author="Jaldhar H. Vyas" --email=jaldhar\@braincells.com };
 }
 
 1;
