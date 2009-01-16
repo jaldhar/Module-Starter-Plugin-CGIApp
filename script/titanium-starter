@@ -32,22 +32,27 @@ Module::Starter::App->run;
 
 Result:
 
-    Foo/lib/Foo.pm
-    Foo/lib/Foo/templates/runmode1.html
-    Foo/t/pod-coverage.t
-    Foo/t/pod.t
-    Foo/t/test-app.t
-    Foo/t/01-load.t
-    Foo/t/perl-critic.t
-    Foo/t/boilerplate.t
-    Foo/t/00-signature.t
-    Foo/t/perlcriticrc
-    Foo/Makefile.PL
-    Foo/Changes
-    Foo/README
-    Foo/MANIFEST.SKIP
-    Foo/MANIFEST
-    Foo/server.pl
+    MyApp
+    MyApp/lib
+    MyApp/lib/MyApp.pm
+    MyApp/lib/MyApp/templates/runmode1.html
+    MyApp/t
+    MyApp/t/00-signature.t
+    MyApp/t/01-load.t
+    MyApp/t/boilerplate.t
+    MyApp/t/perlcriticrc
+    MyApp/t/perl-critic.t
+    MyApp/t/pod-coverage.t
+    MyApp/t/pod.t
+    MyApp/t/test-app.t
+    MyApp/t/www
+    MyApp/t/PUT.STATIC.CONTENT.HERE
+    MyApp/Makefile.PL
+    MyApp/Changes
+    MyApp/README
+    MyApp/MANIFEST.SKIP
+    MyApp/MANIFEST
+    MyApp/server.pl
 
 Options:
 

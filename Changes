@@ -1,5 +1,24 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.10    Thu Jan 15 21:12:55 EST 2009
+        Added a placeholder file in t/www in generated distributions as the
+        empty directory was causing error messages.
+        
+        More build fixes for Windows.  I think I actually have got it right
+        this time.  One problem remains.  Tests will fail if the directory 
+        path to where you have unpacked the module has spaces anywhere in it.
+        What's up with that?
+        
+        Ensured that MANIFEST in generated distributions always uses / as the
+        directory seperator regardless of operating system.
+
+        Added some entries to MANIFEST.SKIP in generated distributions to
+        stop the signature test from failing under Windows.
+        
+        Thanks to Ron Savage and Cosimo Streppone from the cgiapp list and
+        ikegami, cdarke, and andreas1234567 on Perl Monks for their help in 
+        solving Windows issues.
+        
 0.08    Fri Jan  9 18:24:07 EST 2009
         This version just has changes to the build process which hopefully
         will make it work better under Windows.

@@ -36,11 +36,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-Version 0.08
+Version 0.10
 
 =cut
 
-our $VERSION = '0.08';
+our $VERSION = '0.10';
 
 =head1 DESCRIPTION
 
@@ -213,9 +213,13 @@ sub create_t {
     if ( not -d $twdir ) {
         local @ARGV = $twdir;
         mkpath();
-        push @files, $twdir;
         $self->progress("Created $twdir");
     }
+    my $placeholder
+        = File::Spec->catfile( @dirparts, 'PUT.STATIC.CONTENT.HERE' );
+    $self->create_file( $placeholder, q{ } );
+    $self->progress("Created $placeholder");
+    push @files, 't/www/PUT.STATIC.CONTENT.HERE';
 
     return @files;
 }
@@ -442,9 +446,10 @@ sub tmpl_guts {
     my ($self) = @_;
     my %options;    # unused in this function.
 
-    my $reldir   = $self->{templatedir};
+    # we need the directory seperator to be / regardless of OS
+    my $reldir = join q{/}, File::Spec->splitdir( $self->{templatedir} );
     my @dirparts = ( $self->{basedir}, $self->{templatedir} );
-    my $tdir     = File::Spec->catdir(@dirparts);
+    my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
         local @ARGV = $tdir;
         mkpath();
