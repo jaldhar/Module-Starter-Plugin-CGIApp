@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title>jaldhar/Module-Starter-Plugin-CGIApp @ GitHub</title>
+	
+	<style type="text/css">
+		body {
+  		margin-top: 1.0em;
+  		background-color: #0c2202;
+		  font-family: "Helvetica,Arial,FreeSans"; 
+  		color: #ffffff;
+    }
+    #container {
+      margin: 0 auto;
+      width: 700px;
+    }
+		h1 { font-size: 3.8em; color: #f3ddfd; margin-bottom: 3px; }
+		h1 .small { font-size: 0.4em; }
+		h1 a { text-decoration: none }
+		h2 { font-size: 1.5em; color: #f3ddfd; }
+    h3 { text-align: center; color: #f3ddfd; }
+    a { color: #f3ddfd; }
+    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
+    .download { float: right; }
+		pre { background: #000; color: #fff; padding: 15px;}
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .footer { text-align:center; padding-top:30px; font-style: italic; }
+	</style>
+	
+</head>
+
+<body>
+  <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+  
+  <div id="container">
+
+    <div class="download">
+      <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/zipball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
+      <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/tarball/master">
+        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+    </div>
+      
+    <h1><a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp">Module-Starter-Plugin-CGIApp</a> 
+      <span class="small">by <a href="http://github.com/jaldhar">jaldhar</a></span></h1>
+
+    <div class="description">
+      Template based module starter for CGI apps that use Perls' CGI::Application web framework
+    </div>
+
+    <p>This is a plugin for Module::Starter that builds you a skeleton
+CGI::Application module with all the extra files needed to package it for
+CPAN. You can customize the output using HTML::Template.</p><h2>Dependencies</h2>
+<p>This module requires these other modules:
+
+HTML-Template
+Module-Starter
+
+At build time you will need the above modules plus the following if you want
+to run all the tests
+
+Module-Signature
+Test-Pod 1.22
+Test-Pod-Coverage 1.04
+Test-Perl-Critic (This test will only run if the env var TEST_AUTHOR has a
+                  true value)
+
+They are all available on CPAN (http://www.cpan.org)
+
+</p>
+<h2>Install</h2>
+<p>If you have the Module::Signature module installed, you can verify the
+integrity of this distribution by typing:
+
+    cpansign -v
+
+Module::Signature requires GnuPG which you can get from:
+http://www.gnupg.org/download/
+A binary version for Windows is available from that page.
+
+Then to install this module, run the following commands:
+
+    perl Build.pl
+    ./Build
+    ./Build test
+    ./Build install
+
+On Windows you don't need to type the preliminary ./
+
+Alternatively, you can do:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+If you are using ActiveState perl on Windows and you don't have a make
+utility, you can download nmake from:
+http://download.microsoft.com/download/vc15/patch/1.52/w95/en-us/nmake15.exe
+(Replace make with nmake in the instructions above if you are using it.)
+
+If you are using Strawberry perl on Windows, it comes with a make utility
+called dmake.  (Replace make with dmake in the instructions above if you are
+using it.)
+
+NOTE: At the moment, some of the tests will fail on Windows if the path to the
+directory you unpacked the distribution in has spaces in it.  Either skip the
+tests or move to another directory.</p>
+<h2>License</h2>
+<p>Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
+
+This program is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself.</p>
+<h2>Authors</h2>
+<p>Jaldhar H. Vyas (jaldhar@braincells.com)<br/><br/>      </p>
+<h2>Contact</h2>
+<p>Jaldhar H. Vyas (jaldhar@braincells.com)<br/>      </p>
+
+
+    <h2>Download</h2>
+    <p>
+      You can download this project in either
+      <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/zipball/master">zip</a> or
+      <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/tarball/master">tar</a> formats.
+    </p>
+    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+      by running:
+      <pre>$ git clone git://github.com/jaldhar/Module-Starter-Plugin-CGIApp</pre>
+    </p>
+      
+    <div class="footer">
+      get the source code on GitHub : <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp">jaldhar/Module-Starter-Plugin-CGIApp</a>
+    </div>
+    
+  </div>
+
+  <script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9864660");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
