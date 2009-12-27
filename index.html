@@ -52,62 +52,66 @@
       Template based module starter for CGI apps that use Perls' CGI::Application web framework
     </div>
 
-    <p>This is a plugin for Module::Starter that builds you a skeleton
-CGI::Application module with all the extra files needed to package it for
-CPAN. You can customize the output using HTML::Template.</p><h2>Dependencies</h2>
-<p>This module requires these other modules:
+    <p>This is a plugin for <a href="http://search.cpan.org/dist/Module-Starter/">Module::Starter</a> that builds you a skeleton
+<a href="http://search.cpan.org/dist/CGI-Application/">CGI::Application</a> module with all the extra files needed to package it for
+CPAN. You can customize the output using <a href="http://search.cpan.org/dist/HTML-Template/">HTML::Template</a>.</p><h2>Dependencies</h2>
+<p>This module requires these other modules:</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/HTML-Template/">HTML-Template</a></li>
+<li><a href="http://search.cpan.org/dist/Module-Starter/">Module-Starter</a></li>
+</ul>
+<p>At build time you will need the above modules plus the following if you want
+to run all the tests:</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Module-Signature/">Module-Signature</a></li>
+<li><a href="http://search.cpan.org/dist/Test-Pod">Test-Pod</a> 1.22</li>
+<li><a href="http://search.cpan.org/dist/Test-Pod-Coverage">Test-Pod-Coverage</a> 1.04</li>
+<li><a href="http://search.cpan.org/dist/Test-Perl-Critic">Test-Perl-Critic</a> (This test will only run if the env var TEST_AUTHOR has a true value)</li>
+</ul>
+<p>They are all available on CPAN (http://www.cpan.org)</p>
 
-HTML-Template
-Module-Starter
-
-At build time you will need the above modules plus the following if you want
-to run all the tests
-
-Module-Signature
-Test-Pod 1.22
-Test-Pod-Coverage 1.04
-Test-Perl-Critic (This test will only run if the env var TEST_AUTHOR has a
-                  true value)
-
-They are all available on CPAN (http://www.cpan.org)
-
-</p>
 <h2>Install</h2>
 <p>If you have the Module::Signature module installed, you can verify the
-integrity of this distribution by typing:
+integrity of this distribution by typing:</p>
 
+<pre><code>
     cpansign -v
+</code></pre>
 
-Module::Signature requires GnuPG which you can get from:
-http://www.gnupg.org/download/
-A binary version for Windows is available from that page.
+<p>Module::Signature requires GnuPG which you can get from:
+<a href="http://www.gnupg.org/download/">http://www.gnupg.org/download/</a>
+A binary version for Windows is available from that page.</p>
 
-Then to install this module, run the following commands:
+<p>Then to install this module, run the following commands:</p>
 
+<pre><code>
     perl Build.pl
     ./Build
     ./Build test
     ./Build install
+</code></pre>
 
-On Windows you don't need to type the preliminary ./
+<p>On Windows you don't need to type the preliminary ./</p>
 
-Alternatively, you can do:
+<p>Alternatively, you can do:</p>
 
+<pre><code>
     perl Makefile.PL
     make
     make test
     make install
+</code></pre>
 
-If you are using ActiveState perl on Windows and you don't have a make
+<p>If you are using ActiveState perl on Windows and you don't have a make
 utility, you can download nmake from:
-http://download.microsoft.com/download/vc15/patch/1.52/w95/en-us/nmake15.exe
-(Replace make with nmake in the instructions above if you are using it.)
+<a href="http://download.microsoft.com/download/vc15/patch/1.52/w95/en-us/nmake15.exe">http://download.microsoft.com/download/vc15/patch/1.52/w95/en-us/nmake15.exe</a>
+(Replace make with nmake in the instructions above if you are using it.)</p>
 
-If you are using Strawberry perl on Windows, it comes with a make utility
+<p>If you are using Strawberry perl on Windows, it comes with a make utility
 called dmake.  (Replace make with dmake in the instructions above if you are
-using it.)
+using it.)</p>
 
-NOTE: At the moment, some of the tests will fail on Windows if the path to the
+<p><em>NOTE:</em> At the moment, some of the tests will fail on Windows if the path to the
 directory you unpacked the distribution in has spaces in it.  Either skip the
 tests or move to another directory.</p>
 <h2>License</h2>
@@ -115,19 +119,18 @@ tests or move to another directory.</p>
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.</p>
-<h2>Authors</h2>
-<p>Jaldhar H. Vyas (jaldhar@braincells.com)<br/><br/>      </p>
 <h2>Contact</h2>
-<p>Jaldhar H. Vyas (jaldhar@braincells.com)<br/>      </p>
+<p>Jaldhar H. Vyas &lt;<a href="mailto:jaldhar@braincells.com">jaldhar@braincells.com</a>&gt;</p>
 
 
     <h2>Download</h2>
+    <p>Download this project from <a href="http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp">CPAN</a></p>
     <p>
-      You can download this project in either
+      You can also download this project from GitHub in either
       <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/zipball/master">zip</a> or
       <a href="http://github.com/jaldhar/Module-Starter-Plugin-CGIApp/tarball/master">tar</a> formats.
     </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
+    <p>Or you can clone the project with <a href="http://git-scm.com">Git</a>
       by running:
       <pre>$ git clone git://github.com/jaldhar/Module-Starter-Plugin-CGIApp</pre>
     </p>
@@ -144,7 +147,7 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 </script>
 <script type="text/javascript">
 try {
-var pageTracker = _gat._getTracker("UA-9864660");
+var pageTracker = _gat._getTracker("UA-12216159-1");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 </body>
