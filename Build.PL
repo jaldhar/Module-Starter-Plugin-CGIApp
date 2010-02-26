@@ -37,7 +37,7 @@ my $builder = $subclass->new(
     module_name         => 'Module::Starter::Plugin::CGIApp',
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    dist_version_from   => 'lib/Module/Starter/Plugin/CGIApp.pm',
+    dist_version        => '0.20',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
     },
