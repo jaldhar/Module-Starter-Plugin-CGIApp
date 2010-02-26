@@ -72,6 +72,12 @@ my $builder = $subclass->new(
         'Module::Starter'       => 0,
         'HTML::Template'        => 0,
     },
+    meta_merge => {
+        resources => {
+            repository  => 'http://github.com/jaldhar/Module-Starter-Plugin-CGIApp',
+            homepage    => 'http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/',
+        },
+    },
     add_to_cleanup      => [ 'Module-Starter-Plugin-CGIApp-*' ],
     create_makefile_pl  => 'traditional',
     sign                => 1,
