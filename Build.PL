@@ -7,29 +7,28 @@ use File::Find;
 use Module::Build;
 
 my $subclass = Module::Build->subclass(code => <<'EOT');
-sub manify_lib_pods {
-    my $self    = shift;
+sub _find_pods {
+    my ($self, $dirs, %args) = @_;
 
-    my $files   = $self->_find_pods($self->{properties}{libdoc_dirs});
-    return unless keys %$files;
+    my $files = $self->SUPER::_find_pods($dirs, %args);
 
-    my $mandir = File::Spec->catdir( $self->blib, 'libdoc' );
-    File::Path::mkpath( $mandir, 0, oct(777) );
+    foreach (grep { m{^blib/lib/Module/Starter/Plugin/CGIApp/templates}; } keys %{$files} ) {
+        delete $files->{$_};
+    }
+    
+    return $files;
+}
 
-    require Pod::Man;
-    my $file = 'lib/Module/Starter/Plugin/CGIApp.pm';
-    my $relfile = 'Module/Starter/Plugin/CGIApp.pm';
-    # Pod::Simple based parsers only support one document per instance.
-    # This is expected to change in a future version (Pod::Simple > 3.03).
-    # libraries go in section 3
-    my $parser  = Pod::Man->new( section => '3pm' );
-    my $manpage = $self->man3page_name( $relfile ) . '.' .
-        $self->config( 'man3ext' );
-    my $outfile = File::Spec->catfile( $mandir, $manpage);
-    next if $self->up_to_date( $file, $outfile );
-    $self->log_info("Manifying $file -> $outfile\n");
-    $parser->parse_from_file( $file, $outfile );
-    $files->{$file} = $outfile;
+sub find_PL_files {
+    my $self = shift;
+
+    my $out = $self->SUPER::find_PL_files;
+
+    foreach (grep { m{^lib/Module/Starter/Plugin/CGIApp/templates}; } keys %{$out} ) {
+        delete $out->{$_};
+    }
+    
+    return $out;
 }
 EOT
 
