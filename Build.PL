@@ -63,14 +63,8 @@ my $builder = $subclass->new(
         return \%tmpls;
     },
     build_requires      => {
-        'ExtUtils::Command'     => 0,
-        'File::Spec'            => 0,
         'Module::Signature'     => 0,
-        'Pod::Coverage'         => 0.18,
-        'Pod::Usage'            => 0,
         'Test::More'            => 0,
-        'Test::Pod'             => 1.22,
-        'Test::Pod::Coverage'   => 1.08,
     },
     requires            => {
         'ExtUtils::Command'     => 0,

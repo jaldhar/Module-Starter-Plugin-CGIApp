@@ -1,39 +1,33 @@
-#!perl -T
-#
-# $Id$
-#
+#!/usr/bin/perl
+
+# Test that the module passes perlcritic
 use strict;
-use warnings;
-use English qw( -no_match_vars );
-use File::Find qw();
-use Test::More;
-
-if ( !$ENV{TEST_AUTHOR} ) {
-    my $msg = 'Author test.  Set $ENV{TEST_AUTHOR} to a true value to run.';
-    plan skip_all => $msg;
+BEGIN {
+	$|  = 1;
+	$^W = 1;
 }
 
-eval " use Test::Perl::Critic (-profile => 't/perlcriticrc'); ";
-if ($EVAL_ERROR) {
-    my $msg = 'Test::Perl::Critic required to criticise code';
-    plan skip_all => $msg;
-}
-
-my @files;
-
-File::Find::find(
-    {   untaint => 1,
-        wanted  => sub {
-            /^.*\.pm\z/msx
-                && $File::Find::dir !~ /templates/mx
-                && push @files, $File::Find::name;
-            }
-    },
-    'blib/'
+my @MODULES = (
+	'Perl::Critic 1.098',
+	"Test::Perl::Critic 1.01 (-profile => 't/perlcriticrc')",
 );
 
-plan tests => scalar @files;
-
-foreach (@files) {
-    critic_ok($_);
+# Don't run tests during end-user installs
+use Test::More;
+unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
+	plan( skip_all => "Author tests not required for installation" );
 }
+
+# Load the testing modules
+foreach my $MODULE ( @MODULES ) {
+	eval "use $MODULE";
+	if ( $@ ) {
+		$ENV{RELEASE_TESTING}
+		? die( "Failed to load required release-testing module $MODULE" )
+		: plan( skip_all => "$MODULE not available for testing" );
+	}
+}
+
+all_critic_ok();
+
+1;
