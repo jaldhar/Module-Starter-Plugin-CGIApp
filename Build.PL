@@ -36,13 +36,10 @@ my $builder = $subclass->new(
     module_name         => 'Module::Starter::Plugin::CGIApp',
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
+    # Reminder: also change in Makefile.PL
     dist_version        => '0.20',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
-    },
-    PL_files            => {
-        'lib/Module/Starter/Plugin/CGIApp/templates/Makefile.PL' => [],
-        'lib/Module/Starter/Plugin/CGIApp/templates/titanium/Makefile.PL' => [],
     },
     script_files            => {
         'script/cgiapp-starter' => [],
