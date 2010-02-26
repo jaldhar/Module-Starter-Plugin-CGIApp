@@ -10,7 +10,14 @@ use <tmpl_var main_module>;
 
 my $mech = Test::WWW::Mechanize::CGIApp->new;
 
-$mech->app('<tmpl_var main_module>');
+$mech->app(
+    sub {
+        my $app = <tmpl_var main_module>->new(PARAMS => {
+
+        });
+        $app->run();
+    }
+);
 
 $mech->get_ok();
 

@@ -1,5 +1,9 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.20    Thu Feb 25 20:16:12 EST 2010
+        t/test-app.t in generated dists now passes an object to $mech->app
+        to match what is done is server.pl
+        
 0.10    Thu Jan 15 21:12:55 EST 2009
         Added a placeholder file in t/www in generated distributions as the
         empty directory was causing error messages.
