@@ -28,6 +28,16 @@ foreach my $MODULE ( @MODULES ) {
 	}
 }
 
-all_critic_ok();
+my @files = qw{
+    blib/lib/Module/Starter/Plugin/CGIApp.pm
+    blib/script/cgiapp-starter
+    blib/script/titanium-starter
+};
+
+foreach my $file (@files) {
+    critic_ok($file);
+}
+
+done_testing(scalar @files);
 
 1;
