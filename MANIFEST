@@ -37,6 +37,7 @@ lib/Module/Starter/Plugin/CGIApp/templates/titanium/pod.t
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/runmode1.html
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/server.pl
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/test-app.t
+LICENSE
 Makefile.PL
 MANIFEST
 MANIFEST.SKIP
