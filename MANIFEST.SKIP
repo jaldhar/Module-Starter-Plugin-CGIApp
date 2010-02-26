@@ -6,5 +6,7 @@
 ^Build$
 ^Build.bat$
 ^_build/
+.git
 .svn
 .tmp
+^MYMETA.yml$
