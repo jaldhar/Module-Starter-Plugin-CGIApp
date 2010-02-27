@@ -54,8 +54,11 @@ Module-Starter
 At build time you will need the above modules plus the following if you want
 to run all the tests
 
-Module-Signature
+File::Copy::Recursive
+File::DirCompare
+Module::Signature
 Test::More
+Test::MockTime
 
 Further tests are enabled by setting the environment variable RELEASE_TESTING
 to 1 and installing the following modules:

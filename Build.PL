@@ -60,7 +60,10 @@ my $builder = $subclass->new(
     },
     build_requires      => {
         'Module::Signature'     => 0,
+        'File::Copy::Recursive' => 0,
+        'File::DirCompare'      => 0,
         'Test::More'            => 0,
+        'Test::MockTime'        => 0,
     },
     requires            => {
         'ExtUtils::Command'     => 0,

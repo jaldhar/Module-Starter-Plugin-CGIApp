@@ -7,10 +7,13 @@ WriteMakefile
           'PREREQ_PM' => {
                            'ExtUtils::Command' => 0,
                            'File::Basename' => 0,
+                           'File::Copy::Recursive' => 0,
+                           'File::DirCompare' => 0,
                            'File::Spec' => 0,
                            'HTML::Template' => 0,
                            'Module::Signature' => 0,
                            'Module::Starter' => 0,
+                           'Test::MockTime' => 0,
                            'Test::More' => 0
                          },
           'INSTALLDIRS' => 'site',

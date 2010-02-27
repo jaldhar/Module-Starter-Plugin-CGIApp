@@ -3,7 +3,10 @@ abstract: 'template based module starter for CGI apps.'
 author:
   - 'Jaldhar H. Vyas <jaldhar@braincells.com>'
 build_requires:
+  File::Copy::Recursive: 0
+  File::DirCompare: 0
   Module::Signature: 0
+  Test::MockTime: 0
   Test::More: 0
 configure_requires:
   Module::Build: 0.36

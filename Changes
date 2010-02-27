@@ -7,6 +7,10 @@ Revision history for Module-Starter-Plugin-CGIApp
         Hopefully the problem with Build mistakenly trying to run the 
         Makefile.PLs from templates is resolved.
 
+        Revamped test suite should be more comprehensive than before.  In
+        line with Test::XT recommendations, test relevant to the author
+        only, will be skipped unless envvar RELEASE_TESTING=1.  See README.
+
 0.10    Thu Jan 15 21:12:55 EST 2009
         Added a placeholder file in t/www in generated distributions as the
         empty directory was causing error messages.
