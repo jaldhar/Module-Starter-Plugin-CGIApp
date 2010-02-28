@@ -1,5 +1,6 @@
-#!perl
-#
+#/usr/bin/perl
+
+# Test Module::Build support
 use warnings;
 use strict;
 use lib './t';
