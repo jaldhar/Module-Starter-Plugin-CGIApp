@@ -19,7 +19,6 @@ use Module::Starter qw(
     Module::Starter::Plugin::CGIApp
 );
 use Module::Starter::App;
-use POSIX qw( tzset );
 use Test::More;
 
 =head1 NAME
@@ -84,7 +83,6 @@ sub run_tests {
         File::Spec->catdir(  dirname($INC{'Module/Starter/Plugin/CGIApp.pm'}), 
         'CGIApp','templates' );
     $ENV{TZ} = 'UTC';
-    tzset();
     set_fixed_time('2010-01-01T00:00:00Z');
     Module::Starter->create_distro(
         modules => [ 'Foo' ], 
