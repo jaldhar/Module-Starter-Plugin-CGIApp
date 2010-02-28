@@ -48,11 +48,12 @@ DEPENDENCIES
 
 This module requires these other modules:
 
-HTML-Template
-Module-Starter
+perl 5.006
+HTML::Template
+Module::Starter
 
 At build time you will need the above modules plus the following if you want
-to run all the tests
+to run the tests:
 
 File::Copy::Recursive
 File::DirCompare
@@ -64,8 +65,14 @@ Further tests are enabled by setting the environment variable RELEASE_TESTING
 to 1 and installing the following modules:
 
 Perl::Critic           1.098
+Perl::MinimumVersion   1.20
 Pod::Coverage          0.18
 Pod::Simple            3.07
+Test::CPAN::Meta       0.12
+Test::DistManifest     1.003
+Test::HasVersion       0.012
+Test::Kwalitee
+Test::MinimumVersion   0.008
 Test::Perl::Critic     1.01
 Test::Pod              1.26
 Test::Pod::Coverage    1.08
