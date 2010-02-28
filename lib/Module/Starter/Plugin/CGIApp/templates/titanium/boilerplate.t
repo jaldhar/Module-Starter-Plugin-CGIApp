@@ -46,6 +46,10 @@ sub module_boilerplate_ok {
 }
 
 not_in_file_ok(
+    LICENSE => 'License terms' => qr/Insert license text here./mx,
+);
+    
+not_in_file_ok(
     README => 'The README is used...' => qr/The README is used/mx,
     "'version information here'" => qr/to provide version information/mx,
 );
