@@ -6,6 +6,7 @@ lib/Module/Starter/Plugin/CGIApp/templates/01-load.t
 lib/Module/Starter/Plugin/CGIApp/templates/Build.PL
 lib/Module/Starter/Plugin/CGIApp/templates/boilerplate.t
 lib/Module/Starter/Plugin/CGIApp/templates/Changes
+lib/Module/Starter/Plugin/CGIApp/templates/LICENSE
 lib/Module/Starter/Plugin/CGIApp/templates/Makefile.PL
 lib/Module/Starter/Plugin/CGIApp/templates/MANIFEST
 lib/Module/Starter/Plugin/CGIApp/templates/MANIFEST.SKIP
@@ -23,6 +24,7 @@ lib/Module/Starter/Plugin/CGIApp/templates/titanium/00-signature.t
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/01-load.t
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/Build.PL
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/Changes
+lib/Module/Starter/Plugin/CGIApp/templates/titanium/LICENSE
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/MANIFEST
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/MANIFEST.SKIP
 lib/Module/Starter/Plugin/CGIApp/templates/titanium/MI_Makefile.PL
@@ -55,6 +57,7 @@ t/eumm/README
 t/expected/Changes
 t/expected/lib/Foo.pm
 t/expected/lib/Foo/templates/runmode1.html
+t/expected/LICENSE
 t/expected/MANIFEST.SKIP
 t/expected/server.pl
 t/expected/t/00-signature.t

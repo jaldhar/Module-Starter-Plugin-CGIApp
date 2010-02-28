@@ -138,8 +138,16 @@ Jaldhar H. Vyas, C<< <jaldhar at braincells.com> >>
 
 Copyright 2010 Jaldhar H. Vyas, all rights reserved.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:
+
+a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or
+
+b) the Artistic License version 2.0.
+
+The full text of the license can be found in the LICENSE file included
+with this distribution.
 
 =cut
 

@@ -140,6 +140,9 @@ Copyright <tmpl_var year> <tmpl_var author>, all rights reserved.
 
 <tmpl_var license_blurb>
 
+The full text of the license can be found in the LICENSE file included
+with this distribution.
+
 =cut
 
 1;    # End of <tmpl_var module>

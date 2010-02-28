@@ -7,4 +7,3 @@ use lib './t';
 use common;
 
 run_tests 'mb';
-

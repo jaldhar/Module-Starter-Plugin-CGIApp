@@ -6,6 +6,11 @@ Revision history for Module-Starter-Plugin-CGIApp
         
         Tests in generated dists now follow Test::XT recommendations.
         
+        If the license of a generated dist is 'perl', the license blurb in
+        the module and README explicitly mentions GPL+Artistic instead of
+        just 'same as perl'.  A LICENSE file is added to the dist where you
+        can put the license terms.
+
         Hopefully the problem with Build mistakenly trying to run the 
         Makefile.PLs from templates is resolved.
 

@@ -1,4 +1,3 @@
-# $Id$
 
 =head1 NAME
 
@@ -36,11 +35,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-Version 0.10
+Version 0.20
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.20';
 
 =head1 DESCRIPTION
 
@@ -125,6 +124,7 @@ sub create_distro {
     push @files, @{ $build_results{files} };
 
     push @files, $self->create_Changes;
+    push @files, $self->create_LICENSE;
     push @files, $self->create_README( $build_results{instructions} );
     push @files, $self->create_MANIFEST_SKIP;
     push @files, $self->create_perlcriticrc;
@@ -133,6 +133,23 @@ sub create_distro {
     $self->create_MANIFEST( grep { $_ ne 't/boilerplate.t' } @files );
 
     return;
+}
+
+=head2 create_LICENSE( )
+
+This method creates a C<LICENSE> file in the distribution's directory which
+can hold the distribution's license terms.
+
+=cut
+
+sub create_LICENSE {    ## no critic 'NamingConventions::Capitalization'
+    my $self = shift;
+
+    my $fname = File::Spec->catfile( $self->{basedir}, 'LICENSE' );
+    $self->create_file( $fname, $self->LICENSE_guts() );
+    $self->progress("Created $fname");
+
+    return 'LICENSE';
 }
 
 =head2 create_MANIFEST_SKIP( )
@@ -364,6 +381,44 @@ sub Changes_guts {    ## no critic 'NamingConventions::Capitalization'
 
     my $template = $self->{templates}{Changes};
     return $self->render( $template, \%options );
+}
+
+=head2 LICENSE_guts
+
+Implements the creation of a C<LICENSE> file.
+
+=cut
+
+sub LICENSE_guts {    ## no critic 'NamingConventions::Capitalization'
+    my $self = shift;
+    my %options;
+
+    my $template = $self->{templates}{LICENSE};
+    return $self->render( $template, \%options );
+}
+
+sub _license_blurb {
+    my $self = shift;
+    my $license_blurb;
+
+    if ( $self->{license} eq 'perl' ) {
+        $license_blurb = <<'EOT';
+This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:
+
+a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or
+
+b) the Artistic License version 2.0.
+EOT
+    }
+    else {
+        $license_blurb = <<"EOT";
+This program is released under the following license: $self->{license}
+EOT
+    }
+    chomp $license_blurb;
+    return $license_blurb;
 }
 
 =head2 MANIFEST_SKIP_guts
