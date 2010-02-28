@@ -1,7 +1,7 @@
-#!perl -T
-#
-# $Id$
-#
+#!/usr/bin/perl
+
+# Some tests to make sure you are not using default placeholders from the
+# templates.  Remove this file after you have customized the distribution.
 use strict;
 use warnings;
 use English qw( -no_match_vars );

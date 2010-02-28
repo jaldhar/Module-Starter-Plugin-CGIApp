@@ -1,5 +1,23 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.20    Sun Feb 28 13:17:27 EST 2010
+        t/test-app.t in generated dists now passes an object to $mech->app
+        to match what is done is server.pl
+        
+        Tests in generated dists now follow Test::XT recommendations.
+        
+        If the license of a generated dist is 'perl', the license blurb in
+        the module and README explicitly mentions GPL+Artistic instead of
+        just 'same as perl'.  A LICENSE file is added to the dist where you
+        can put the license terms.
+
+        Hopefully the problem with Build mistakenly trying to run the 
+        Makefile.PLs from templates is resolved.
+
+        Revamped test suite should be more comprehensive than before.  In
+        line with Test::XT recommendations, test relevant to the author
+        only, will be skipped unless envvar RELEASE_TESTING=1.  See README.
+
 0.10    Thu Jan 15 21:12:55 EST 2009
         Added a placeholder file in t/www in generated distributions as the
         empty directory was causing error messages.

@@ -1,4 +1,3 @@
-# $Id$
 
 =head1 NAME
 
@@ -28,19 +27,19 @@ use warnings;
 use strict;
 use Carp qw( croak );
 use English qw( -no_match_vars );
-use ExtUtils::Command qw( mkpath );
 use File::Basename;
+use File::Path qw( mkpath );
 use File::Spec ();
 use Module::Starter::Simple;
 use HTML::Template;
 
 =head1 VERSION
 
-Version 0.10
+Version 0.20
 
 =cut
 
-our $VERSION = '0.10';
+our $VERSION = '0.20';
 
 =head1 DESCRIPTION
 
@@ -82,13 +81,13 @@ sub create_distro {
 
     my $self = $class->new(@opts);
 
-    my @modules = map { split /,/mx } @{ $self->{modules} };
+    my @modules = map { split /,/msx } @{ $self->{modules} };
 
     if ( !@modules ) {
         croak "No modules specified.\n";
     }
     for (@modules) {
-        if ( !/\A[a-z_]\w*(?:::[\w]+)*\Z/imx ) {
+        if ( !/\A[a-z_]\w*(?:::[\w]+)*\Z/imsx ) {
             croak "Invalid module name: $_";
         }
     }
@@ -99,22 +98,22 @@ sub create_distro {
     if ( !$self->{email} ) {
         croak "Must specify an email address\n";
     }
-    ( $self->{email_obfuscated} = $self->{email} ) =~ s/@/ at /mx;
+    ( $self->{email_obfuscated} = $self->{email} ) =~ s/@/ at /msx;
 
     $self->{license} ||= 'perl';
 
     $self->{main_module} = $self->{modules}->[0];
     if ( !$self->{distro} ) {
         $self->{distro} = $self->{main_module};
-        $self->{distro} =~ s/::/-/gmx;
+        $self->{distro} =~ s/::/-/gmsx;
     }
 
     $self->{basedir} = $self->{dir} || $self->{distro};
     $self->create_basedir;
 
-    my @distroparts = split /-/mx, $self->{distro};
-    $self->{templatedir}
-        = File::Spec->catdir( 'lib', @distroparts, 'templates' );
+    my @distroparts = split /-/msx, $self->{distro};
+    $self->{templatedir} =
+      File::Spec->catdir( 'lib', @distroparts, 'templates' );
 
     my @files;
     push @files, $self->create_modules(@modules);
@@ -125,6 +124,7 @@ sub create_distro {
     push @files, @{ $build_results{files} };
 
     push @files, $self->create_Changes;
+    push @files, $self->create_LICENSE;
     push @files, $self->create_README( $build_results{instructions} );
     push @files, $self->create_MANIFEST_SKIP;
     push @files, $self->create_perlcriticrc;
@@ -135,6 +135,23 @@ sub create_distro {
     return;
 }
 
+=head2 create_LICENSE( )
+
+This method creates a C<LICENSE> file in the distribution's directory which
+can hold the distribution's license terms.
+
+=cut
+
+sub create_LICENSE {    ## no critic 'NamingConventions::Capitalization'
+    my $self = shift;
+
+    my $fname = File::Spec->catfile( $self->{basedir}, 'LICENSE' );
+    $self->create_file( $fname, $self->LICENSE_guts() );
+    $self->progress("Created $fname");
+
+    return 'LICENSE';
+}
+
 =head2 create_MANIFEST_SKIP( )
 
 This method creates a C<MANIFEST.SKIP> file in the distribution's directory so 
@@ -142,7 +159,7 @@ that unneeded files can be skipped from inclusion in the distribution.
 
 =cut
 
-sub create_MANIFEST_SKIP {
+sub create_MANIFEST_SKIP {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
 
     my $fname = File::Spec->catfile( $self->{basedir}, 'MANIFEST.SKIP' );
@@ -165,8 +182,7 @@ sub create_perlcriticrc {
     my @dirparts = ( $self->{basedir}, 't' );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
-        local @ARGV = $tdir;
-        mkpath();
+        mkpath($tdir);
         $self->progress("Created $tdir");
     }
 
@@ -211,12 +227,11 @@ sub create_t {
     my @dirparts = ( $self->{basedir}, 't', 'www' );
     my $twdir = File::Spec->catdir(@dirparts);
     if ( not -d $twdir ) {
-        local @ARGV = $twdir;
-        mkpath();
+        mkpath($twdir);
         $self->progress("Created $twdir");
     }
-    my $placeholder
-        = File::Spec->catfile( @dirparts, 'PUT.STATIC.CONTENT.HERE' );
+    my $placeholder =
+      File::Spec->catfile( @dirparts, 'PUT.STATIC.CONTENT.HERE' );
     $self->create_file( $placeholder, q{ } );
     $self->progress("Created $placeholder");
     push @files, 't/www/PUT.STATIC.CONTENT.HERE';
@@ -334,16 +349,16 @@ sub templates {
     my %template;
 
     my $template_dir = ( $ENV{MODULE_TEMPLATE_DIR} || $self->{template_dir} )
-        or croak 'template dir not defined';
+      or croak 'template dir not defined';
     if ( !-d $template_dir ) {
         croak "template dir does not exist: $template_dir";
     }
 
     foreach ( glob "$template_dir/*" ) {
         my $basename = basename $_;
-        next if ( not -f $_ ) or ( $basename =~ /^\./mx );
+        next if ( not -f $_ ) or ( $basename =~ /\A \./msx );
         open my $template_file, '<', $_
-            or croak "couldn't open template: $_";
+          or croak "couldn't open template: $_";
         $template{$basename} = do {
             local $RS = undef;
             <$template_file>;
@@ -360,12 +375,50 @@ Implements the creation of a C<Changes> file.
 
 =cut
 
-sub Changes_guts {    ## no critic (ProhibitMixedCaseSubs)
+sub Changes_guts {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
     my %options;
 
     my $template = $self->{templates}{Changes};
     return $self->render( $template, \%options );
+}
+
+=head2 LICENSE_guts
+
+Implements the creation of a C<LICENSE> file.
+
+=cut
+
+sub LICENSE_guts {    ## no critic 'NamingConventions::Capitalization'
+    my $self = shift;
+    my %options;
+
+    my $template = $self->{templates}{LICENSE};
+    return $self->render( $template, \%options );
+}
+
+sub _license_blurb {
+    my $self = shift;
+    my $license_blurb;
+
+    if ( $self->{license} eq 'perl' ) {
+        $license_blurb = <<'EOT';
+This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:
+
+a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or
+
+b) the Artistic License version 2.0.
+EOT
+    }
+    else {
+        $license_blurb = <<"EOT";
+This program is released under the following license: $self->{license}
+EOT
+    }
+    chomp $license_blurb;
+    return $license_blurb;
 }
 
 =head2 MANIFEST_SKIP_guts
@@ -374,7 +427,7 @@ Implements the creation of a C<MANIFEST.SKIP> file.
 
 =cut
 
-sub MANIFEST_SKIP_guts {
+sub MANIFEST_SKIP_guts {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
     my %options;
 
@@ -428,7 +481,7 @@ sub t_guts {
 
     my %t_files;
 
-    foreach ( grep {/\.t$/mx} keys %{ $self->{templates} } ) {
+    foreach ( grep { /\.t\z/msx } keys %{ $self->{templates} } ) {
         my $template = $self->{templates}{$_};
         $t_files{$_} = $self->render( $template, \%options );
     }
@@ -451,13 +504,13 @@ sub tmpl_guts {
     my @dirparts = ( $self->{basedir}, $self->{templatedir} );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
-        local @ARGV = $tdir;
-        mkpath();
+        mkpath($tdir);
         $self->progress("Created $tdir");
     }
 
     my @t_files;
-    foreach my $filename ( grep {/\.html$/mx} keys %{ $self->{templates} } ) {
+    foreach my $filename ( grep { /\.html\z/msx } keys %{ $self->{templates} } )
+    {
         my $template = $self->{templates}{$filename};
         my $fname = File::Spec->catfile( @dirparts, $filename );
         $self->create_file( $fname, $template );
@@ -483,8 +536,16 @@ Jaldhar H. Vyas, E<lt>jaldhar at braincells.comE<gt>
 
 Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:
+
+a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or
+
+b) the Artistic License version 2.0.
+
+The full text of the license can be found in the LICENSE file included
+with this distribution.
 
 =head1 SEE ALSO
 

@@ -48,17 +48,34 @@ DEPENDENCIES
 
 This module requires these other modules:
 
-HTML-Template
-Module-Starter
+perl 5.006
+HTML::Template
+Module::Starter
 
 At build time you will need the above modules plus the following if you want
-to run all the tests
+to run the tests:
 
-Module-Signature
-Test-Pod 1.22
-Test-Pod-Coverage 1.04
-Test-Perl-Critic (This test will only run if the env var TEST_AUTHOR has a 
-                  true value)
+File::Copy::Recursive
+File::DirCompare
+Module::Signature
+Test::More
+Test::MockTime
+
+Further tests are enabled by setting the environment variable RELEASE_TESTING
+to 1 and installing the following modules:
+
+Perl::Critic           1.098
+Perl::MinimumVersion   1.20
+Pod::Coverage          0.18
+Pod::Simple            3.07
+Test::CPAN::Meta       0.12
+Test::DistManifest     1.003
+Test::HasVersion       0.012
+Test::Kwalitee
+Test::MinimumVersion   0.008
+Test::Perl::Critic     1.01
+Test::Pod              1.26
+Test::Pod::Coverage    1.08
 
 They are all available on CPAN (http://www.cpan.org)
 
@@ -86,9 +103,15 @@ You can also look for information at:
 
 COPYRIGHT AND LICENCE
 
-Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
+Copyright (C) 2010,  Consolidated Braincells Inc. All Rights Reserved.
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.
+This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:
 
-$Id$
+a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or
+
+b) the Artistic License version 2.0.
+
+The full text of the license can be found in the LICENSE file included
+with this distribution.

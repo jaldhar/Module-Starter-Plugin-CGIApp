@@ -1,32 +1,31 @@
 ---
-name: Module-Starter-Plugin-CGIApp
-version: 0.10
+abstract: 'template based module starter for CGI apps.'
 author:
   - 'Jaldhar H. Vyas <jaldhar@braincells.com>'
-abstract: template based module starter for CGI apps.
-license: perl
-resources:
-  license: http://dev.perl.org/licenses/
-requires:
-  ExtUtils::Command: 0
-  File::Basename: 0
-  File::Spec: 0
-  HTML::Template: 0
-  Module::Starter: 0
 build_requires:
-  ExtUtils::Command: 0
-  File::Spec: 0
+  File::Copy::Recursive: 0
+  File::DirCompare: 0
   Module::Signature: 0
-  Pod::Coverage: 0.18
-  Pod::Usage: 0
+  Test::MockTime: 0
   Test::More: 0
-  Test::Pod: 1.22
-  Test::Pod::Coverage: 1.08
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3601'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: Module-Starter-Plugin-CGIApp
 provides:
   Module::Starter::Plugin::CGIApp:
     file: lib/Module/Starter/Plugin/CGIApp.pm
     version: 0.10
-generated_by: Module::Build version 0.3
-meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
+requires:
+  HTML::Template: 0
+  Module::Starter: 0
+  perl: 5.006
+resources:
+  homepage: http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/
+  license: http://dev.perl.org/licenses/
+  repository: http://github.com/jaldhar/Module-Starter-Plugin-CGIApp
+version: 0.20
