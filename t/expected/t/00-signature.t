@@ -1,5 +1,6 @@
-#!perl
-#
+#!/usr/bin/perl
+
+# Test if the modules signature is valid.
 use warnings;
 use strict;
 use Test::More tests => 1;

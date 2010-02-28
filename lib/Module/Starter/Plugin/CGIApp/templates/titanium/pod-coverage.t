@@ -1,24 +1,33 @@
-#!perl -T
-#
-use strict;
-use warnings;
-use English qw( -no_match_vars );
-use Test::More;
+#!/usr/bin/perl
 
-my $min_tpc = 1.08;
-eval "use Test::Pod::Coverage $min_tpc;";
-if ($EVAL_ERROR) {
-    plan skip_all =>
-        "Test::Pod::Coverage $min_tpc required for testing POD coverage";
+# Ensure pod coverage in your distribution
+use strict;
+BEGIN {
+	$|  = 1;
+	$^W = 1;
 }
 
-# Test::Pod::Coverage doesn't require a minimum Pod::Coverage version,
-# but older versions don't recognize some common documentation styles
-my $min_pc = 0.18;
-eval "use Pod::Coverage $min_pc;";
-if ($EVAL_ERROR) {
-    plan skip_all =>
-        "Pod::Coverage $min_pc required for testing POD coverage";
+my @MODULES = (
+	'Pod::Coverage 0.18',
+	'Test::Pod::Coverage 1.08',
+);
+
+# Don't run tests during end-user installs
+use Test::More;
+unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
+	plan( skip_all => "Author tests not required for installation" );
+}
+
+# Load the testing modules
+foreach my $MODULE ( @MODULES ) {
+	eval "use $MODULE";
+	if ( $@ ) {
+		$ENV{RELEASE_TESTING}
+		? die( "Failed to load required release-testing module $MODULE" )
+		: plan( skip_all => "$MODULE not available for testing" );
+	}
 }
 
 all_pod_coverage_ok();
+
+1;

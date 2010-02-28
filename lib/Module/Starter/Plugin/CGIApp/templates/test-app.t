@@ -1,5 +1,6 @@
-#!perl -T
-#
+#!/usr/bin/perl
+
+# Test application functionality
 use strict;
 use warnings;
 use Test::More tests => 1;

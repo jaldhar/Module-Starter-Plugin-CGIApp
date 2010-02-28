@@ -4,6 +4,8 @@ Revision history for Module-Starter-Plugin-CGIApp
         t/test-app.t in generated dists now passes an object to $mech->app
         to match what is done is server.pl
         
+        Tests in generated dists now follow Test::XT recommendations.
+        
         Hopefully the problem with Build mistakenly trying to run the 
         Makefile.PLs from templates is resolved.
 
