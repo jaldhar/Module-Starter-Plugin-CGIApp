@@ -63,6 +63,7 @@ my $builder = $subclass->new(
         'Test::MockTime'        => 0,
     },
     requires            => {
+        'perl'                  => 5.006,
         'ExtUtils::Command'     => 0,
         'File::Basename'        => 0,
         'File::Spec'            => 0,

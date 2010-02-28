@@ -26,6 +26,7 @@ requires:
   File::Spec: 0
   HTML::Template: 0
   Module::Starter: 0
+  perl: 5.006
 resources:
   homepage: http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/
   license: http://dev.perl.org/licenses/

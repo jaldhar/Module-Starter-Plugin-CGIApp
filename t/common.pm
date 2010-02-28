@@ -1,7 +1,8 @@
 package common;
-use base qw( Exporter );
 use warnings;
 use strict;
+use vars qw(@ISA);
+@ISA = qw(Exporter);
 use blib;
 use Cwd qw( cwd );
 use English qw( -no_match_vars );

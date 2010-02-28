@@ -9,18 +9,21 @@ cgiapp-starter - creates a skeleton CGI::Application project
 use warnings;
 use strict;
 
+our $VERSION = '0.20';
+
 use Module::Starter qw(
-        Module::Starter::Simple
-        Module::Starter::Plugin::Template
-        Module::Starter::Plugin::CGIApp
+  Module::Starter::Simple
+  Module::Starter::Plugin::Template
+  Module::Starter::Plugin::CGIApp
 );
 
 # Provide a sane defailt
 use File::Basename;
 use File::Spec;
-unless ($ENV{MODULE_TEMPLATE_DIR}) {
-    $ENV{MODULE_TEMPLATE_DIR} = 
-        File::Spec->catdir(  dirname($INC{'Module/Starter/Plugin/CGIApp.pm'}), 'CGIApp','templates' );
+if ( !$ENV{MODULE_TEMPLATE_DIR} ) {
+    local $ENV{MODULE_TEMPLATE_DIR} =
+      File::Spec->catdir( dirname( $INC{'Module/Starter/Plugin/CGIApp.pm'} ),
+        'CGIApp', 'templates' );
 }
 
 use Module::Starter::App;

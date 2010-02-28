@@ -82,13 +82,13 @@ sub create_distro {
 
     my $self = $class->new(@opts);
 
-    my @modules = map { split /,/mx } @{ $self->{modules} };
+    my @modules = map { split /,/msx } @{ $self->{modules} };
 
     if ( !@modules ) {
         croak "No modules specified.\n";
     }
     for (@modules) {
-        if ( !/\A[a-z_]\w*(?:::[\w]+)*\Z/imx ) {
+        if ( !/\A[a-z_]\w*(?:::[\w]+)*\Z/imsx ) {
             croak "Invalid module name: $_";
         }
     }
@@ -99,22 +99,22 @@ sub create_distro {
     if ( !$self->{email} ) {
         croak "Must specify an email address\n";
     }
-    ( $self->{email_obfuscated} = $self->{email} ) =~ s/@/ at /mx;
+    ( $self->{email_obfuscated} = $self->{email} ) =~ s/@/ at /msx;
 
     $self->{license} ||= 'perl';
 
     $self->{main_module} = $self->{modules}->[0];
     if ( !$self->{distro} ) {
         $self->{distro} = $self->{main_module};
-        $self->{distro} =~ s/::/-/gmx;
+        $self->{distro} =~ s/::/-/gmsx;
     }
 
     $self->{basedir} = $self->{dir} || $self->{distro};
     $self->create_basedir;
 
-    my @distroparts = split /-/mx, $self->{distro};
-    $self->{templatedir}
-        = File::Spec->catdir( 'lib', @distroparts, 'templates' );
+    my @distroparts = split /-/msx, $self->{distro};
+    $self->{templatedir} =
+      File::Spec->catdir( 'lib', @distroparts, 'templates' );
 
     my @files;
     push @files, $self->create_modules(@modules);
@@ -142,7 +142,7 @@ that unneeded files can be skipped from inclusion in the distribution.
 
 =cut
 
-sub create_MANIFEST_SKIP {
+sub create_MANIFEST_SKIP {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
 
     my $fname = File::Spec->catfile( $self->{basedir}, 'MANIFEST.SKIP' );
@@ -215,8 +215,8 @@ sub create_t {
         mkpath();
         $self->progress("Created $twdir");
     }
-    my $placeholder
-        = File::Spec->catfile( @dirparts, 'PUT.STATIC.CONTENT.HERE' );
+    my $placeholder =
+      File::Spec->catfile( @dirparts, 'PUT.STATIC.CONTENT.HERE' );
     $self->create_file( $placeholder, q{ } );
     $self->progress("Created $placeholder");
     push @files, 't/www/PUT.STATIC.CONTENT.HERE';
@@ -334,16 +334,16 @@ sub templates {
     my %template;
 
     my $template_dir = ( $ENV{MODULE_TEMPLATE_DIR} || $self->{template_dir} )
-        or croak 'template dir not defined';
+      or croak 'template dir not defined';
     if ( !-d $template_dir ) {
         croak "template dir does not exist: $template_dir";
     }
 
     foreach ( glob "$template_dir/*" ) {
         my $basename = basename $_;
-        next if ( not -f $_ ) or ( $basename =~ /^\./mx );
+        next if ( not -f $_ ) or ( $basename =~ /\A \./msx );
         open my $template_file, '<', $_
-            or croak "couldn't open template: $_";
+          or croak "couldn't open template: $_";
         $template{$basename} = do {
             local $RS = undef;
             <$template_file>;
@@ -360,7 +360,7 @@ Implements the creation of a C<Changes> file.
 
 =cut
 
-sub Changes_guts {    ## no critic (ProhibitMixedCaseSubs)
+sub Changes_guts {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
     my %options;
 
@@ -374,7 +374,7 @@ Implements the creation of a C<MANIFEST.SKIP> file.
 
 =cut
 
-sub MANIFEST_SKIP_guts {
+sub MANIFEST_SKIP_guts {    ## no critic 'NamingConventions::Capitalization'
     my $self = shift;
     my %options;
 
@@ -428,7 +428,7 @@ sub t_guts {
 
     my %t_files;
 
-    foreach ( grep {/\.t$/mx} keys %{ $self->{templates} } ) {
+    foreach ( grep { /\.t\z/msx } keys %{ $self->{templates} } ) {
         my $template = $self->{templates}{$_};
         $t_files{$_} = $self->render( $template, \%options );
     }
@@ -457,7 +457,8 @@ sub tmpl_guts {
     }
 
     my @t_files;
-    foreach my $filename ( grep {/\.html$/mx} keys %{ $self->{templates} } ) {
+    foreach my $filename ( grep { /\.html\z/msx } keys %{ $self->{templates} } )
+    {
         my $template = $self->{templates}{$filename};
         my $fname = File::Spec->catfile( @dirparts, $filename );
         $self->create_file( $fname, $template );
