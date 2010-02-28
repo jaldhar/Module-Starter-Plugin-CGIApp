@@ -48,7 +48,6 @@ script/titanium-starter
 t/00-signature.t
 t/01-load.t
 t/common.pm
-t/coverage.t                                                                  
 t/distmanifest.t                                                              
 t/eumm/Makefile.PL
 t/eumm/MANIFEST
