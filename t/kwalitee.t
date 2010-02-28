@@ -8,7 +8,7 @@ BEGIN {
 }
 
 my @MODULES = (
-	'Test::Kwalitee',
+	'Test::Kwalitee tests => [ qw( -has_test_pod -has_test_pod_coverage ) ]',
 );
 
 # Don't run tests during end-user installs
