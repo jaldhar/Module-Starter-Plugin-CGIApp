@@ -28,8 +28,8 @@ use warnings;
 use strict;
 use Carp qw( croak );
 use English qw( -no_match_vars );
-use ExtUtils::Command qw( mkpath );
 use File::Basename;
+use File::Path qw( mkpath );
 use File::Spec ();
 use Module::Starter::Simple;
 use HTML::Template;
@@ -165,8 +165,7 @@ sub create_perlcriticrc {
     my @dirparts = ( $self->{basedir}, 't' );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
-        local @ARGV = $tdir;
-        mkpath();
+        mkpath($tdir);
         $self->progress("Created $tdir");
     }
 

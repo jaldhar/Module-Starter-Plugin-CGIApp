@@ -64,7 +64,6 @@ my $builder = $subclass->new(
     },
     requires            => {
         'perl'                  => 5.006,
-        'ExtUtils::Command'     => 0,
         'File::Basename'        => 0,
         'File::Spec'            => 0,
         'Module::Starter'       => 0,
