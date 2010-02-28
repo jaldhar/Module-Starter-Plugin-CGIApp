@@ -64,8 +64,6 @@ my $builder = $subclass->new(
     },
     requires            => {
         'perl'                  => 5.006,
-        'File::Basename'        => 0,
-        'File::Spec'            => 0,
         'Module::Starter'       => 0,
         'HTML::Template'        => 0,
     },
@@ -76,7 +74,7 @@ my $builder = $subclass->new(
         },
     },
     add_to_cleanup      => [ 'Module-Starter-Plugin-CGIApp-*' ],
-    create_makefile_pl  => 'traditional',
+    create_makefile_pl  => 'small',
     sign                => 1,
 );
 
