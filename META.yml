@@ -19,7 +19,7 @@ name: Module-Starter-Plugin-CGIApp
 provides:
   Module::Starter::Plugin::CGIApp:
     file: lib/Module/Starter/Plugin/CGIApp.pm
-    version: 0.10
+    version: 0.20
 requires:
   HTML::Template: 0
   Module::Starter: 0
