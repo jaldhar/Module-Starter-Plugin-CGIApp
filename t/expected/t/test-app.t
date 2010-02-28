@@ -18,5 +18,5 @@ $mech->app(
     }
 );
 
-$mech->get_ok();
+$mech->get_ok(q{/});
 
