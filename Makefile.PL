@@ -4,8 +4,9 @@ use ExtUtils::MakeMaker;
 WriteMakefile
 (
           'NAME' => 'Module::Starter::Plugin::CGIApp',
-          'VERSION_FROM' => 'lib/Module/Starter/Plugin/CGIApp.pm',
+          'VERSION' => '0.20',
           'PREREQ_PM' => {
+                           'perl' => '5.006',
                            'ExtUtils::Command' => 0,
                            'File::Basename' => 0,
                            'File::Copy::Recursive' => 0,
@@ -22,6 +23,7 @@ WriteMakefile
                            'script/cgiapp-starter',
                            'script/titanium-starter'
                          ],
-          'PL_FILES' => {}
+          'PL_FILES' => {},
+          'SIGN'     => 1.
         )
 ;
