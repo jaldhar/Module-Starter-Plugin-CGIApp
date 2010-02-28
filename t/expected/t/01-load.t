@@ -1,7 +1,5 @@
 #!perl -T
 #
-# $Id$
-#
 use warnings;
 use strict;
 use Test::More tests => 1;

@@ -1,5 +1,3 @@
-# $Id$
-
 =head1 NAME
 
 <tmpl_var module> - The great new <tmpl_var module> web application!

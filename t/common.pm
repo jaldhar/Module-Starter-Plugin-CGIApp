@@ -1,6 +1,3 @@
-#
-# $Id$
-#
 package common;
 use base qw( Exporter );
 use warnings;

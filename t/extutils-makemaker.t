@@ -1,7 +1,5 @@
 #!perl
 #
-# $Id$
-#
 use warnings;
 use strict;
 use lib './t';
