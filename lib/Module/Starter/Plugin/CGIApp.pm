@@ -210,8 +210,7 @@ sub create_t {
     my @dirparts = ( $self->{basedir}, 't', 'www' );
     my $twdir = File::Spec->catdir(@dirparts);
     if ( not -d $twdir ) {
-        local @ARGV = $twdir;
-        mkpath();
+        mkpath($twdir);
         $self->progress("Created $twdir");
     }
     my $placeholder =
@@ -450,8 +449,7 @@ sub tmpl_guts {
     my @dirparts = ( $self->{basedir}, $self->{templatedir} );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
-        local @ARGV = $tdir;
-        mkpath();
+        mkpath($tdir);
         $self->progress("Created $tdir");
     }
 
