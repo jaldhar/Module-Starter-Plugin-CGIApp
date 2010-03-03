@@ -64,7 +64,7 @@ my $builder = $subclass->new(
         'Time::Piece'           => 1.12,
     },
     requires            => {
-        'perl'                  => 5.006,
+        'perl'                  => 5.008,
         'Module::Starter'       => 0,
         'HTML::Template'        => 0,
     },

@@ -48,7 +48,7 @@ DEPENDENCIES
 
 This module requires these other modules:
 
-perl 5.006
+perl 5.008
 HTML::Template
 Module::Starter
 

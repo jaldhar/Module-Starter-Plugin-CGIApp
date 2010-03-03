@@ -35,11 +35,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-Version 0.20
+Version 0.21
 
 =cut
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 =head1 DESCRIPTION
 
@@ -87,7 +87,7 @@ sub create_distro {
         croak "No modules specified.\n";
     }
     for (@modules) {
-        if ( !/\A[a-z_]\w*(?:::[\w]+)*\Z/imsx ) {
+        if ( !/\A[[:alpha:]_]\w*(?:::[\w]+)*\Z/imsx ) {
             croak "Invalid module name: $_";
         }
     }
@@ -355,7 +355,7 @@ sub templates {
 
     foreach ( glob "$template_dir/*" ) {
         my $basename = basename $_;
-        next if ( not -f $_ ) or ( $basename =~ /\A \./msx );
+        next if ( not -f $_ ) or ( $basename =~ /\A [.]/msx );
         open my $template_file, '<', $_
           or croak "couldn't open template: $_";
         $template{$basename} = do {
@@ -480,7 +480,7 @@ sub t_guts {
 
     my %t_files;
 
-    foreach ( grep { /\.t\z/msx } keys %{ $self->{templates} } ) {
+    foreach ( grep { /[.]t\z/msx } keys %{ $self->{templates} } ) {
         my $template = $self->{templates}{$_};
         $t_files{$_} = $self->render( $template, \%options );
     }
@@ -508,7 +508,8 @@ sub tmpl_guts {
     }
 
     my @t_files;
-    foreach my $filename ( grep { /\.html\z/msx } keys %{ $self->{templates} } )
+    foreach
+      my $filename ( grep { /[.]html \z/msx } keys %{ $self->{templates} } )
     {
         my $template = $self->{templates}{$filename};
         my $fname = File::Spec->catfile( @dirparts, $filename );
