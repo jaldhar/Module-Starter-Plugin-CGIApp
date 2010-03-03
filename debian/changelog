@@ -1,0 +1,25 @@
+libmodule-starter-plugin-cgiapp-perl (0.10-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 15 Jan 2009 22:09:04 -0500
+
+libmodule-starter-plugin-cgiapp-perl (0.08-1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Fri, 09 Jan 2009 19:53:08 -0500
+
+libmodule-starter-plugin-cgiapp-perl (0.07-1) unstable; urgency=low
+
+  * New upstream version.
+  * Updated Debian packaging to debhelper 7, machine readable copyright 
+    and other modern conveniences.
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Tue, 06 Jan 2009 22:39:28 -0500
+
+libmodule-starter-plugin-cgiapp-perl (0.05-1) unstable; urgency=low
+
+  * Initial Release. (Closes: #499478)
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 18 Sep 2008 22:36:44 -0400

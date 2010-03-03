@@ -1,0 +1,2 @@
+libmodule-starter-plugin-cgiapp-perl: manpage-has-bad-whatis-entry usr/share/man/man3/Module::Starter::Plugin::CGIApp::templates::Module.3pm.gz
+libmodule-starter-plugin-cgiapp-perl: manpage-has-bad-whatis-entry usr/share/man/man3/Module::Starter::Plugin::CGIApp::templates::titanium::Module.3pm.gz
