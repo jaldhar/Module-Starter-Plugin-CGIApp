@@ -112,8 +112,7 @@ sub create_distro {
     $self->create_basedir;
 
     my @distroparts = split /-/msx, $self->{distro};
-    $self->{templatedir} =
-      File::Spec->catdir( 'lib', @distroparts, 'templates' );
+    $self->{templatedir} = join q{/}, ( 'lib', @distroparts, 'templates' );
 
     my @files;
     push @files, $self->create_modules(@modules);

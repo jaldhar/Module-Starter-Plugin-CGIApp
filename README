@@ -60,6 +60,7 @@ File::DirCompare
 Module::Signature
 Test::More
 Test::MockTime
+Time::Piece            1.12
 
 Further tests are enabled by setting the environment variable RELEASE_TESTING
 to 1 and installing the following modules:

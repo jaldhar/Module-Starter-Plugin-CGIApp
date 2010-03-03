@@ -20,6 +20,7 @@ use Module::Starter qw(
 );
 use Module::Starter::App;
 use Test::More;
+use Time::Piece;
 
 =head1 NAME
 
@@ -27,31 +28,44 @@ common - common functions and variables for this modules tests
 
 =head1 VERSION
 
-Version 1.2
+Version 1.4
 
 =cut
 
-our $VERSION = '1.3';
+our $VERSION = '1.4';
 
 our @EXPORT = qw/ run_tests /;
-
 
 sub compare_trees {
     my ($old, $new, $different, $extra, $missing) = @_;
 
     File::DirCompare->compare($old, $new, sub {
-        my ($expected, $got) = @_;
+            my ($expected, $got) = @_;
 
-        if (!$expected) {
-            push @{$extra}, $got;
-        }
-        elsif (!$got) {
-            push @{$missing}, $expected;
-        }
-        else {
-            push @{$different}, $got;
-        }
-    });
+            if (!$expected) {
+                push @{$extra}, $got;
+            }
+            elsif (!$got) {
+                push @{$missing}, $expected;
+            }
+            else {
+                push @{$different}, $got;
+            }
+        },
+        {
+            # ignore line endings in file comparisons.
+            cmp => sub {
+                my ($expected, $got) = @_;
+
+                return File::Compare::compare($expected, $got, sub {
+                    my ($line1, $line2) = @_;
+                    chomp $line1;
+                    chomp $line2;
+                    return $line1 ne $line2;
+                });
+            },
+        },
+    );
 }
 
 sub run_tests {
@@ -78,12 +92,16 @@ sub run_tests {
     dircopy 't/expected', $old or die "$OS_ERROR\n";
     dircopy "t/$type", $old or die "$OS_ERROR\n";
 
+    # Standardize the test environment so things like differing time zones and
+    # line endings don't cause false test failures.
     $ENV{MODULE_STARTER_DIR} = $dir;
     $ENV{MODULE_TEMPLATE_DIR} =
         File::Spec->catdir(  dirname($INC{'Module/Starter/Plugin/CGIApp.pm'}), 
         'CGIApp','templates' );
     $ENV{TZ} = 'UTC';
+    Time::Piece::_tzset();  # workaround for lack of POSIX::tzset in strawberry
     set_fixed_time('2010-01-01T00:00:00Z');
+
     Module::Starter->create_distro(
         modules => [ 'Foo' ], 
         dir     => $new,

@@ -34,7 +34,7 @@ my $builder = $subclass->new(
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
     # Reminder: also change in Makefile.PL
-    dist_version        => '0.20',
+    dist_version        => '0.21',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
     },
@@ -61,6 +61,7 @@ my $builder = $subclass->new(
         'File::DirCompare'      => 0,
         'Test::More'            => 0,
         'Test::MockTime'        => 0,
+        'Time::Piece'           => 1.12,
     },
     requires            => {
         'perl'                  => 5.006,
