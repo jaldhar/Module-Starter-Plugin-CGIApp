@@ -4,8 +4,10 @@ libmodule-starter-plugin-cgiapp-perl (0.22-1) unstable; urgency=low
   * If I've done this right, the problem with the test suite claiming a 
     mismatched signature is no longer an issue.  (Closes: #538114)
   * Updated to policy 3.8.4 and 3.0(quilt) source format.
+  * Corrected debian/copyright.  The package license is GPL2+/Artistic not
+    GPL1+/Artistic
 
- -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 04 Mar 2010 11:52:28 -0500
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 04 Mar 2010 12:09:27 -0500
 
 libmodule-starter-plugin-cgiapp-perl (0.10-1) unstable; urgency=low
 
