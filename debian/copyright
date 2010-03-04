@@ -5,7 +5,7 @@ Upstream-Source: http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp/
 Upstream-Name: Module-Starter-Plugin-CGIApp
 
 Files: *
-Copyright: © 2008,  Consolidated Braincells Inc. All Rights Reserved.
+Copyright: © 2010,  Consolidated Braincells Inc. All Rights Reserved.
 License: GPL-1+ | Artistic
 
 Files: debian/*
