@@ -534,7 +534,7 @@ Jaldhar H. Vyas, E<lt>jaldhar at braincells.comE<gt>
 
 =head1 COPYRIGHT
 
-Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
+Copyright (C) 2010,  Consolidated Braincells Inc. All Rights Reserved.
 
 This distribution is free software; you can redistribute it and/or modify it
 under the terms of either:
