@@ -1,8 +1,8 @@
-libmodule-starter-plugin-cgiapp-perl (0.21-1) unstable; urgency=low
+libmodule-starter-plugin-cgiapp-perl (0.22-1) unstable; urgency=low
 
   * New upstream version.
 
- -- Jaldhar H. Vyas <jaldhar@debian.org>  Wed, 03 Mar 2010 20:47:10 -0500
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Thu, 04 Mar 2010 02:11:56 -0500
 
 libmodule-starter-plugin-cgiapp-perl (0.10-1) unstable; urgency=low
 
