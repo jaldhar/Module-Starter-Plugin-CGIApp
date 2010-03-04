@@ -19,7 +19,7 @@ name: Module-Starter-Plugin-CGIApp
 provides:
   Module::Starter::Plugin::CGIApp:
     file: lib/Module/Starter/Plugin/CGIApp.pm
-    version: 0.21
+    version: 0.22
 requires:
   HTML::Template: 0
   Module::Starter: 0
@@ -28,4 +28,4 @@ resources:
   homepage: http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/
   license: http://dev.perl.org/licenses/
   repository: http://github.com/jaldhar/Module-Starter-Plugin-CGIApp
-version: 0.21
+version: 0.22
