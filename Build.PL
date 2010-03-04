@@ -33,8 +33,7 @@ my $builder = $subclass->new(
     module_name         => 'Module::Starter::Plugin::CGIApp',
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    # Reminder: also change in Makefile.PL
-    dist_version        => '0.21',
+    dist_version        => '0.22',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
     },
@@ -56,7 +55,6 @@ my $builder = $subclass->new(
         return \%tmpls;
     },
     build_requires      => {
-        'Module::Signature'     => 0,
         'File::Copy::Recursive' => 0,
         'File::DirCompare'      => 0,
         'Test::More'            => 0,
