@@ -57,10 +57,15 @@ to run the tests:
 
 File::Copy::Recursive
 File::DirCompare
-Module::Signature
 Test::More
 Test::MockTime
 Time::Piece            1.12
+
+The signature can be tested by installing the following module:
+
+Module::Signature
+
+and setting the environment variable TEST_SIGNATURE to 1.
 
 Further tests are enabled by setting the environment variable RELEASE_TESTING
 to 1 and installing the following modules:
@@ -79,7 +84,6 @@ Test::Pod              1.26
 Test::Pod::Coverage    1.08
 
 They are all available on CPAN (http://www.cpan.org)
-
 
 SUPPORT AND DOCUMENTATION
 

@@ -21,19 +21,11 @@ my $builder = Module::Build->new(
         return \%tmpls;
     },
     build_requires => {
-        'Titanium'                      => 0,
-        'File::Find'                    => 0,      
-        'HTML::Template'                => 0,
-        'Pod::Coverage'                 => 0.18,
-        'Pod::Usage'                    => 0,
         'Test::More'                    => 0,
-        'Test::Pod'                     => 1.22,
-        'Test::Pod::Coverage'           => 1.08,
         'Test::WWW::Mechanize::CGIApp'  => 0,
     },
     requires => {
         'Titanium'                      => 0,
-        'File::Find'                    => 0,      
         'HTML::Template'                => 0,
     },
     add_to_cleanup      => [ '<tmpl_var distro>-*' ],

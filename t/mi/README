@@ -20,6 +20,41 @@ To install this module, run the following commands:
 	make test
 	make install
 
+DEPENDENCIES
+
+This module requires these other modules:
+
+CGI::Application
+HTML::Template
+
+If you want to use the development server (server.pl) you will also need:
+
+CGI::Application::Server
+
+At build time you will need the above modules plus the following if you want
+to run the tests:
+
+Test::More
+Test::WWW::Mechanize::CGIApp
+
+The signature can be tested by installing the following module:
+
+Module::Signature
+
+and setting the environment variable TEST_SIGNATURE to 1.
+
+Further tests are enabled by setting the environment variable RELEASE_TESTING
+to 1 and installing the following modules:
+
+Perl::Critic           1.098
+Pod::Coverage          0.18
+Pod::Simple            3.07
+Test::Perl::Critic     1.01
+Test::Pod              1.26
+Test::Pod::Coverage    1.08
+
+They are all available on CPAN (http://www.cpan.org)
+
 SUPPORT AND DOCUMENTATION
 
 After installing, you can find documentation for this module with the perldoc 

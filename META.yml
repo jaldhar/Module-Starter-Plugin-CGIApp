@@ -5,7 +5,6 @@ author:
 build_requires:
   File::Copy::Recursive: 0
   File::DirCompare: 0
-  Module::Signature: 0
   Test::MockTime: 0
   Test::More: 0
   Time::Piece: 1.12
