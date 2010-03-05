@@ -21,7 +21,8 @@ use Module::Starter qw(
 use File::Basename;
 use File::Spec;
 if ( !$ENV{MODULE_TEMPLATE_DIR} ) {
-    local $ENV{MODULE_TEMPLATE_DIR} =
+    $ENV{MODULE_TEMPLATE_DIR}
+      =    ## no critic 'Variables/RequireLocalizedPunctuationVars'
       File::Spec->catdir( dirname( $INC{'Module/Starter/Plugin/CGIApp.pm'} ),
         'CGIApp', 'templates/titanium' );
 }
