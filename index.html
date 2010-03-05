@@ -54,24 +54,9 @@
 
     <p>This is a plugin for <a href="http://search.cpan.org/dist/Module-Starter/">Module::Starter</a> that builds you a skeleton
 <a href="http://search.cpan.org/dist/CGI-Application/">CGI::Application</a> module with all the extra files needed to package it for
-CPAN. You can customize the output using <a href="http://search.cpan.org/dist/HTML-Template/">HTML::Template</a>.</p><h2>Dependencies</h2>
-<p>This module requires these other modules:</p>
-<ul>
-<li><a href="http://search.cpan.org/dist/HTML-Template/">HTML-Template</a></li>
-<li><a href="http://search.cpan.org/dist/Module-Starter/">Module-Starter</a></li>
-</ul>
-<p>At build time you will need the above modules plus the following if you want
-to run all the tests:</p>
-<ul>
-<li><a href="http://search.cpan.org/dist/Module-Signature/">Module-Signature</a></li>
-<li><a href="http://search.cpan.org/dist/Test-Pod">Test-Pod</a> 1.22</li>
-<li><a href="http://search.cpan.org/dist/Test-Pod-Coverage">Test-Pod-Coverage</a> 1.04</li>
-<li><a href="http://search.cpan.org/dist/Test-Perl-Critic">Test-Perl-Critic</a> (This test will only run if the env var TEST_AUTHOR has a true value)</li>
-</ul>
-<p>They are all available on CPAN (http://www.cpan.org)</p>
-
+CPAN. You can customize the output using <a href="http://search.cpan.org/dist/HTML-Template/">HTML::Template</a>.</p>
 <h2>Install</h2>
-<p>If you have the Module::Signature module installed, you can verify the
+<p>If you have the <a href="http://search.cpan.org/dist/Module-Signature/">Module::Signature</a> module installed, you can verify the
 integrity of this distribution by typing:</p>
 
 <pre><code>
@@ -114,11 +99,80 @@ using it.)</p>
 <p><em>NOTE:</em> At the moment, some of the tests will fail on Windows if the path to the
 directory you unpacked the distribution in has spaces in it.  Either skip the
 tests or move to another directory.</p>
-<h2>License</h2>
-<p>Copyright (C) 2008,  Consolidated Braincells Inc. All Rights Reserved.
+<h2>Dependencies</h2>
+<p>This module requires these other modules:</p>
+<ul>
+<li>Perl 5.008</li>
+<li><a href="http://search.cpan.org/dist/HTML-Template/">HTML-Template</a></li>
+<li><a href="http://search.cpan.org/dist/Module-Starter/">Module-Starter</a></li>
+</ul>
+<p>At build time you will need the above modules plus the following if you want
+to run all the tests:</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/File-Copy-Recursive/">File::Copy::Recursive</a></li>
+<li><a href="http://search.cpan.org/dist/File-DirCompare/">File::DirCompare</a></li>
+<li><a href="http://search.cpan.org/dist/Test-More">Test::More</a></li>
+<li><a href="http://search.cpan.org/dist/Test-MockTime">Test::MockTime</a></li>
+<li><a href="http://search.cpan.org/dist/Time-Piece">Time::Piece</a> 1.12</li>
+</ul>
+<p>The signature can be tested by installing the following module:</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Module-Signature/">Module::Signature</a></li>
+</ul>
+<p>and setting the environment variable TEST_SIGNATURE to 1.</p>
 
-This program is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself.</p>
+<p>Further tests are enabled by setting the environment variable RELEASE_TESTING
+to 1 and installing the following modules:</p>
+
+<ul>
+<li><a href="http://search.cpan.org/dist/Perl-Critic/">Perl::Critic</a> 1.098</li>
+<li><a href="http://search.cpan.org/dist/Perl-MinimumVersion/">Perl::MinimumVersion</a> 1.20</li>
+<li><a href="http://search.cpan.org/dist/Pod-Coverage/">Pod::Coverage</a> 0.18</li>
+<li><a href="http://search.cpan.org/dist/Pod-Simple/">Pod::Simple</a> 3.07</li>
+<li><a href="http://search.cpan.org/dist/Test-CPAN-Meta/">Test::CPAN::Meta</a> 0.12</li>
+<li><a href="http://search.cpan.org/dist/Test-DistManifest/">Test::DistManifest</a> 1.003</li>
+<li><a href="http://search.cpan.org/dist/Test-HasVersion/">Test::HasVersion</a> 0.012</li>
+<li><a href="http://search.cpan.org/dist/Test-Kwalitee/">Test::Kwalitee</a></li>
+<li><a href="http://search.cpan.org/dist/Test-MinimumVersion/">Test::MinimumVersion</a> 0.008</li>
+<li><a href="http://search.cpan.org/dist/Test-Perl-Critic/">Test::Perl::Critic</a> 1.01</li>
+<li><a href="http://search.cpan.org/dist/Test-Pod/">Test::Pod</a> 1.26</li>
+<li><a href="http://search.cpan.org/dist/Test-Pod-Coverage/">Test::Pod::Coverage</a> 1.08</li>
+</ul>
+
+<p>They are all available on CPAN (http://www.cpan.org)</p>
+
+<h2>Support and Documentation</h2>
+
+<p>After installing, you can find documentation for this module with the perldoc 
+command.</p>
+
+<pre><code>
+    perldoc Module::Starter::Plugin::CGIApp
+</code></pre>
+
+<p>You can also look for information at:</p>
+<ul>
+<li><a href="http://search.cpan.org/dist/Module-Starter-Plugin-CGIApp">Search CPAN</a></li>
+<li><a href="http://rt.cpan.org/NoAuth/Bugs.html?Dist=Module-Starter-Plugin-CGIApp">CPAN Request Tracker</a></li>
+<li><a href="http://annocpan.org/dist/Module-Starter-Plugin-CGIApp">AnnoCPAN, annotated CPAN documentation</a></li>
+<li><a href="http://cpanratings.perl.org/d/Module-Starter-Plugin-CGIApp">CPAN Ratings</a></li>
+</ul>
+
+
+<h2>Copyright and License</h2>
+<p>Copyright (C) 2010,  Consolidated Braincells Inc. All Rights Reserved.</p>
+
+<p>This distribution is free software; you can redistribute it and/or modify it
+under the terms of either:</p>
+
+<p>a) the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version, or</p>
+
+<p>b) the Artistic License version 2.0.</p>
+
+The full text of the license can be found in the LICENSE file included
+with this distribution.
+
 <h2>Contact</h2>
 <p>Jaldhar H. Vyas &lt;<a href="mailto:jaldhar@braincells.com">jaldhar@braincells.com</a>&gt;</p>
 
