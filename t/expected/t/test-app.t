@@ -5,13 +5,13 @@ use strict;
 use warnings;
 use Test::More tests => 1;
 use Test::WWW::Mechanize::CGIApp;
-use Foo;
+use Foo::Bar;
 
 my $mech = Test::WWW::Mechanize::CGIApp->new;
 
 $mech->app(
     sub {
-        my $app = Foo->new(PARAMS => {
+        my $app = Foo::Bar->new(PARAMS => {
 
         });
         $app->run();

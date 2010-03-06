@@ -1,8 +1,11 @@
 use inc::Module::Install;
 
-name     'Foo';
-all_from 'lib/Foo.pm';
-author   'Jaldhar H. Vyas';
+name         'Example-Dist';
+abstract     '';
+author       'Jaldhar H. Vyas';
+license      'perl';
+version      '0.01';
+perl_version '5.008';
 
 build_requires 'Test::More'                    => 0;
 build_requires 'Test::WWW::Mechanize::CGIApp'  => 0;

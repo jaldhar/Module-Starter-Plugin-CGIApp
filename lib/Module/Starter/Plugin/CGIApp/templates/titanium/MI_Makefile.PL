@@ -1,8 +1,11 @@
 use inc::Module::Install;
 
-name     '<tmpl_var distro>';
-all_from '<tmpl_var main_pm_file>';
-author   '<tmpl_var author>';
+name         '<tmpl_var distro>';
+abstract     '';
+author       '<tmpl_var author>';
+license      '<tmpl_var license>';
+version      '0.01';
+perl_version '5.008';
 
 build_requires 'Test::More'                    => 0;
 build_requires 'Test::WWW::Mechanize::CGIApp'  => 0;

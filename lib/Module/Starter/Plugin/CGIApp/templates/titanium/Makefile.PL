@@ -3,10 +3,11 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME                => '<tmpl_var main_module>',
+    NAME                => '<tmpl_var distro>',
+    ABSTRACT            => '',
     AUTHOR              => '<tmpl_var author> <<tmpl_var email>>',
-    VERSION_FROM        => '<tmpl_var main_pm_file>',
-    ABSTRACT_FROM       => '<tmpl_var main_pm_file>',
+    LICENSE             => '<tmpl_var license>',
+    VERSION             => '0.01',
     PL_FILES            => {},
     PREREQ_PM => {
         'Titanium'                      => 0,

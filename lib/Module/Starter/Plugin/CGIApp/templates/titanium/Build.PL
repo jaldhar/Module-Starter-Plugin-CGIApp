@@ -3,10 +3,11 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    module_name         => '<tmpl_var main_module>',
-    license             => '<tmpl_var license>',
+    dist_name           => '<tmpl_var distro>',
+    dist_abstract       => '',
     dist_author         => '<tmpl_var author> <<tmpl_var email>>',
-    dist_version_from   => '<tmpl_var main_pm_file>',
+    license             => '<tmpl_var license>',
+    dist_version        => '0.01',
     tmpl_files          => eval {
         my %tmpls; File::Find::find(
             {

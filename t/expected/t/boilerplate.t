@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use English qw( -no_match_vars );
-use Test::More tests => 3 + 1;
+use Test::More tests => 3 + 2;
 
 sub not_in_file_ok {
     my ( $filename, %regex ) = @_;
@@ -57,6 +57,8 @@ not_in_file_ok(
 not_in_file_ok( Changes => 'placeholder date/time' => qr{Date/time}msx );
 
 
-module_boilerplate_ok('lib/Foo.pm');
+module_boilerplate_ok('lib/Foo/Bar.pm');
+
+module_boilerplate_ok('lib/Foo/Baz.pm');
 
 

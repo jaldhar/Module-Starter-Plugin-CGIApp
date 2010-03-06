@@ -3,10 +3,11 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    module_name         => 'Foo',
-    license             => 'perl',
+    dist_name           => 'Example-Dist',
+    dist_abstract       => '',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    dist_version_from   => 'lib/Foo.pm',
+    license             => 'perl',
+    dist_version        => '0.01',
     tmpl_files          => eval {
         my %tmpls; File::Find::find(
             {
@@ -16,7 +17,7 @@ my $builder = Module::Build->new(
                     }
                 },
             },
-            'lib/Foo/templates',
+            'lib/Example/Dist/templates',
         );
         return \%tmpls;
     },
@@ -28,7 +29,7 @@ my $builder = Module::Build->new(
         'CGI::Application'              => 4.04,
         'HTML::Template'                => 0,
     },
-    add_to_cleanup      => [ 'Foo-*' ],
+    add_to_cleanup      => [ 'Example-Dist-*' ],
     create_makefile_pl  => 'traditional',
     sign                => 1,
 );

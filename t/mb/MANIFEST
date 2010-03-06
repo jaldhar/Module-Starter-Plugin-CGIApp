@@ -4,8 +4,9 @@ LICENSE
 MANIFEST
 MANIFEST.SKIP
 README
-lib/Foo.pm
-lib/Foo/templates/runmode1.html
+lib/Example/Dist/templates/runmode1.html
+lib/Foo/Bar.pm
+lib/Foo/Baz.pm
 server.pl
 t/00-signature.t
 t/01-load.t

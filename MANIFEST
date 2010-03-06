@@ -55,8 +55,9 @@ t/eumm/Makefile.PL
 t/eumm/MANIFEST
 t/eumm/README
 t/expected/Changes
-t/expected/lib/Foo.pm
-t/expected/lib/Foo/templates/runmode1.html
+t/expected/lib/Example/Dist/templates/runmode1.html
+t/expected/lib/Foo/Bar.pm
+t/expected/lib/Foo/Baz.pm
 t/expected/LICENSE
 t/expected/MANIFEST.SKIP
 t/expected/server.pl

@@ -79,7 +79,7 @@ sub run_tests {
 
     my $dir = File::Spec->catdir(cwd, 't');
     my $old = File::Spec->catdir($dir, 'temp');
-    my $new = File::Spec->catdir($dir, 'Foo');
+    my $new = File::Spec->catdir($dir, 'Example-Dist');
 
     if ( -d $old ) {
         rmtree $old || die "$OS_ERROR\n";
@@ -103,7 +103,8 @@ sub run_tests {
     set_fixed_time('2010-01-01T00:00:00Z');
 
     Module::Starter->create_distro(
-        modules => [ 'Foo' ], 
+        distro  => 'Example-Dist',
+        modules => [ 'Foo::Bar', 'Foo::Baz' ], 
         dir     => $new,
         author  => 'Jaldhar H. Vyas', 
         email   => 'jaldhar@braincells.com',

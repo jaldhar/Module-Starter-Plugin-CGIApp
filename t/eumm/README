@@ -1,4 +1,4 @@
-Foo
+Example-Dist
 
 The README is used to introduce the module and provide instructions on
 how to install the module, any machine dependencies it may have (for
@@ -60,21 +60,21 @@ SUPPORT AND DOCUMENTATION
 After installing, you can find documentation for this module with the perldoc 
 command.
 
-    perldoc Foo
+    perldoc Foo::Bar
 
 You can also look for information at:
 
     Search CPAN
-        http://search.cpan.org/dist/Foo
+        http://search.cpan.org/dist/Example-Dist
 
     CPAN Request Tracker:
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Foo
+        http://rt.cpan.org/NoAuth/Bugs.html?Dist=Example-Dist
 
     AnnoCPAN, annotated CPAN documentation:
-        http://annocpan.org/dist/Foo
+        http://annocpan.org/dist/Example-Dist
 
     CPAN Ratings:
-        http://cpanratings.perl.org/d/Foo
+        http://cpanratings.perl.org/d/Example-Dist
 
 COPYRIGHT AND LICENCE
 

@@ -2,9 +2,9 @@ use warnings;
 use strict;
 use CGI::Application::Server;
 use lib 'lib';
-use Foo;
+use Foo::Bar;
 
-my $app = Foo->new(PARAMS => {
+my $app = Foo::Bar->new(PARAMS => {
 
 });
 

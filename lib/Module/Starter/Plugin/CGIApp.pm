@@ -171,6 +171,28 @@ sub create_MANIFEST_SKIP {    ## no critic 'NamingConventions::Capitalization'
     return 'MANIFEST.SKIP';
 }
 
+=head2 create_modules( @modules )
+
+This method will create a starter module file for each module named in 
+I<@modules>.  It is only subclassed from L<Module::Starter::Simple> here 
+so we can change the I<rtname> tmpl_var to be the distro name instead of 
+the module name.
+
+=cut
+
+sub create_modules {
+    my ( $self, @modules ) = @_;
+
+    my @files;
+
+    my $rtname = lc $self->{distro};
+    for my $module (@modules) {
+        push @files, $self->_create_module( $module, $rtname );
+    }
+
+    return @files;
+}
+
 =head2 create_perlcriticrc( )
 
 This method creates a C<perlcriticrc> in the distribution's test directory so 

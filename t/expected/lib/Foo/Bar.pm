@@ -1,21 +1,21 @@
 
 =head1 NAME
 
-Foo - The great new Foo web application!
+Foo::Bar - The great new Foo::Bar web application!
 
 =head1 SYNOPSIS
 
-    use Foo;
-    my $app = Foo->new();
+    use Foo::Bar;
+    my $app = Foo::Bar->new();
     $app->run();
 
 =head1 ABSTRACT
 
-A brief summary of what Foo does.
+A brief summary of what Foo::Bar does.
 
 =cut
 
-package Foo;
+package Foo::Bar;
 
 use warnings;
 use strict;
@@ -24,7 +24,7 @@ use Carp qw( croak );
 
 =head1 VERSION
 
-This document describes Foo Version 0.01
+This document describes Foo::Bar Version 0.01
 
 =cut
 
@@ -33,7 +33,7 @@ our $VERSION = '0.01';
 =head1 DESCRIPTION
 
 Overview of functionality and purpose of
-web application module Foo...
+web application module Foo::Bar...
 
 =head1 METHODS
 
@@ -55,7 +55,7 @@ sub setup {
     $self->error_mode('runmode1');
     $self->run_modes( [qw/ runmode1 /] );
     if ( !$self->tmpl_path ) {
-        ( my $tp = 'Foo' ) =~ s{-}{/}gmsx;
+        ( my $tp = 'Example-Dist' ) =~ s{-}{/}gmsx;
         $tp .= '/templates';
         foreach my $inc (@INC) {
             if ( -d "$inc/$tp" ) {
@@ -123,8 +123,8 @@ TODO: Other methods in your public interface go here.
 There are no known problems with this module.
 
 Please report any bugs or feature requests to
-C<bug-foo at rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Foo>.
+C<bug-example-dist at rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Example-Dist>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
 
@@ -157,6 +157,6 @@ with this distribution.
 
 =cut
 
-1;    # End of Foo
+1;    # End of Foo::Bar
 
 __END__
