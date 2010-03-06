@@ -1,7 +1,7 @@
 use inc::Module::Install;
 
 name         '<tmpl_var distro>';
-abstract     '';
+abstract     'Abstract goes here.';
 author       '<tmpl_var author>';
 license      '<tmpl_var license>';
 version      '0.01';

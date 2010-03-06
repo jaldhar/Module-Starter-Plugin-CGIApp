@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => '<tmpl_var distro>',
-    ABSTRACT            => '',
+    ABSTRACT            => 'Abstract goes here.',
     AUTHOR              => '<tmpl_var author> <<tmpl_var email>>',
     LICENSE             => '<tmpl_var license>',
     VERSION             => '0.01',

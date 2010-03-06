@@ -5,7 +5,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     dist_name           => '<tmpl_var distro>',
     module_name         => '<tmpl_var main_module>',
-    dist_abstract       => '',
+    dist_abstract       => 'Abstract goes here.',
     dist_author         => '<tmpl_var author> <<tmpl_var email>>',
     license             => '<tmpl_var license>',
     dist_version        => '0.01',
