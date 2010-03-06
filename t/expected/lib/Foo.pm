@@ -1,3 +1,4 @@
+
 =head1 NAME
 
 Foo - The great new Foo web application!
