@@ -54,9 +54,14 @@ sub setup {
     $self->error_mode('runmode1');
     $self->run_modes( [qw/ runmode1 /] );
     if ( !$self->tmpl_path ) {
-        ( my $tp = 'Foo' ) =~ s/::/\//gmx;
-        ( $tp = $INC{"$tp.pm"} ) =~ s/.pm//mx;
-        $self->tmpl_path("$tp/templates");
+        ( my $tp = 'Foo' ) =~ s{-}{/}gmsx;
+        $tp .= '/templates';
+        foreach my $inc (@INC) {
+            if ( -d "$inc/$tp" ) {
+                $self->tmpl_path("$inc/$tp");
+                last;
+            }
+        }
     }
     $self->run_modes( AUTOLOAD => 'runmode1' );
     return;

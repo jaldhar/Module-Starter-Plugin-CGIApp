@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use English qw( -no_match_vars );
-use Test::More tests => 2 + 1;
+use Test::More tests => 3 + 1;
 
 sub not_in_file_ok {
     my ( $filename, %regex ) = @_;
@@ -38,22 +38,25 @@ sub not_in_file_ok {
 sub module_boilerplate_ok {
     my ($module) = @_;
     not_in_file_ok(
-        $module => 'the great new $MODULENAME' => qr/ - The great new /mx,
-        'boilerplate description'  => qr/Quick summary of what the module/mx,
-        'stub function definition' => qr/function[12]/mx,
+        $module => 'the great new $MODULENAME' => qr/\Q - The great new \E/msx,
+        'boilerplate description'  => qr/\QQuick summary of what the module\E/msx,
+        'stub function definition' => qr/function[12]/msx,
     );
     return;
 }
 
 not_in_file_ok(
-    LICENSE => 'License terms' => qr/Insert license text here./mx,
+    LICENSE => 'License terms' => qr/\QInsert license text here.\E/msx,
 );
 
 not_in_file_ok(
-    README => 'The README is used...' => qr/The README is used/mx,
-    "'version information here'" => qr/to provide version information/mx,
+    README => 'The README is used...' => qr/\QThe README is used\E/msx,
+    "'version information here'" => qr/\Qto provide version information\E/msx,
 );
 
-not_in_file_ok( Changes => 'placeholder date/time' => qr{Date/time}mx );
+not_in_file_ok( Changes => 'placeholder date/time' => qr{Date/time}msx );
+
+
+module_boilerplate_ok('lib/Foo.pm');
 
 

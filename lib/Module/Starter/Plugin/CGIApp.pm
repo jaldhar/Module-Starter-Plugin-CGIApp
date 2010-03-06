@@ -81,16 +81,19 @@ sub create_distro {
 
     my $self = $class->new(@opts);
 
-    my @modules = map { split /,/msx } @{ $self->{modules} };
-
+    my @modules;
+    foreach my $arg ( @{ $self->{modules} } ) {
+        push @modules, ( split /[,]/msx, $arg );
+    }
     if ( !@modules ) {
         croak "No modules specified.\n";
     }
     for (@modules) {
-        if ( !/\A[[:alpha:]_]\w*(?:::[\w]+)*\Z/imsx ) {
+        if ( !/\A [[:alpha:]_] \w* (?: [:] [:] [\w]+ )* \Z /imsx ) {
             croak "Invalid module name: $_";
         }
     }
+    $self->{modules} = \@modules;
 
     if ( !$self->{author} ) {
         croak "Must specify an author\n";
@@ -115,9 +118,9 @@ sub create_distro {
     $self->{templatedir} = join q{/}, ( 'lib', @distroparts, 'templates' );
 
     my @files;
-    push @files, $self->create_modules(@modules);
+    push @files, $self->create_modules( @{ $self->{modules} } );
 
-    push @files, $self->create_t(@modules);
+    push @files, $self->create_t( @{ $self->{modules} } );
     push @files, $self->create_tmpl();
     my %build_results = $self->create_build();
     push @files, @{ $build_results{files} };
@@ -216,7 +219,7 @@ in the distribution.
 =cut
 
 sub create_t {
-    my ( $self, @modules ) = shift;
+    my ( $self, @modules ) = @_;
 
     my %t_files = $self->t_guts(@modules);
 
