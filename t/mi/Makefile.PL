@@ -1,7 +1,7 @@
 use inc::Module::Install;
 
 name         'Example-Dist';
-abstract     '';
+abstract     'Abstract goes here.';
 author       'Jaldhar H. Vyas';
 license      'perl';
 version      '0.01';

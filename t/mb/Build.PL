@@ -5,7 +5,7 @@ use Module::Build;
 my $builder = Module::Build->new(
     dist_name           => 'Example-Dist',
     module_name         => 'Foo::Bar',
-    dist_abstract       => '',
+    dist_abstract       => 'Abstract goes here.',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
     license             => 'perl',
     dist_version        => '0.01',

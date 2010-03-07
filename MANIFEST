@@ -54,6 +54,7 @@ t/distmanifest.t
 t/eumm/Makefile.PL
 t/eumm/MANIFEST
 t/eumm/README
+t/eumm/t/boilerplate.t
 t/expected/Changes
 t/expected/lib/Example/Dist/templates/runmode1.html
 t/expected/lib/Foo/Bar.pm
@@ -63,7 +64,6 @@ t/expected/MANIFEST.SKIP
 t/expected/server.pl
 t/expected/t/00-signature.t
 t/expected/t/01-load.t
-t/expected/t/boilerplate.t
 t/expected/t/perl-critic.t
 t/expected/t/perlcriticrc
 t/expected/t/pod-coverage.t
@@ -76,10 +76,12 @@ t/kwalitee.t
 t/mb/Build.PL
 t/mb/MANIFEST
 t/mb/README
+t/mb/t/boilerplate.t
 t/meta.t 
 t/mi/Makefile.PL
 t/mi/MANIFEST
 t/mi/README
+t/mi/t/boilerplate.t
 t/minimumversion.t                                                            
 t/module-build.t
 t/module-install.t

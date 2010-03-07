@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use English qw( -no_match_vars );
-use Test::More tests => 3 + 2;
+use Test::More tests => 4 + 2;
 
 sub not_in_file_ok {
     my ( $filename, %regex ) = @_;
@@ -44,6 +44,10 @@ sub module_boilerplate_ok {
     );
     return;
 }
+
+not_in_file_ok(
+    Makefile.PL => 'Abstract' => qr/\QAbstract goes here.\E/msx,
+);
 
 not_in_file_ok(
     LICENSE => 'License terms' => qr/\QInsert license text here.\E/msx,

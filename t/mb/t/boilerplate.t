@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use English qw( -no_match_vars );
-use Test::More tests => 4 + <tmpl_var nummodules>;
+use Test::More tests => 4 + 2;
 
 sub not_in_file_ok {
     my ( $filename, %regex ) = @_;
@@ -46,7 +46,7 @@ sub module_boilerplate_ok {
 }
 
 not_in_file_ok(
-    <tmpl_var buildscript> => 'Abstract' => qr/\QAbstract goes here.\E/msx,
+    Build.PL => 'Abstract' => qr/\QAbstract goes here.\E/msx,
 );
 
 not_in_file_ok(
@@ -60,7 +60,9 @@ not_in_file_ok(
 
 not_in_file_ok( Changes => 'placeholder date/time' => qr{Date/time}msx );
 
-<tmpl_loop module_pm_files>
-module_boilerplate_ok('<tmpl_var module_pm_files_item>');
-</tmpl_loop>
+
+module_boilerplate_ok('lib/Foo/Bar.pm');
+
+module_boilerplate_ok('lib/Foo/Baz.pm');
+
 

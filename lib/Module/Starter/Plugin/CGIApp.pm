@@ -30,6 +30,7 @@ use English qw( -no_match_vars );
 use File::Basename;
 use File::Path qw( mkpath );
 use File::Spec ();
+use Module::Starter::BuilderSet;
 use Module::Starter::Simple;
 use HTML::Template;
 
@@ -320,6 +321,8 @@ sub render {
     $opts{year}          = $self->_thisyear();
     $opts{license_blurb} = $self->_license_blurb();
     $opts{datetime}      = scalar localtime;
+    $opts{buildscript} =
+      Module::Starter::BuilderSet->new()->file_for_builder( $self->{builder} );
 
     foreach my $key ( keys %{$self} ) {
         next if defined $opts{$key};

@@ -4,7 +4,7 @@ use ExtUtils::MakeMaker;
 
 WriteMakefile(
     NAME                => 'Example-Dist',
-    ABSTRACT            => '',
+    ABSTRACT            => 'Abstract goes here.',
     AUTHOR              => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
     LICENSE             => 'perl',
     VERSION             => '0.01',
