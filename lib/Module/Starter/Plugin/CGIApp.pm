@@ -82,6 +82,13 @@ sub create_distro {
 
     my $self = $class->new(@opts);
 
+    # Supposedly the *-starter scripts can handle multiple --builder options
+    # but this doesn't work (and IMO doesn't make sense anyway.) So in the
+    # case multiple builders were specified, we just pick the first one.
+    if (ref $self->{builder} eq 'ARRAY') {
+        $self->{builder} = $self->{builder}->[0];
+    }
+
     my @modules;
     foreach my $arg ( @{ $self->{modules} } ) {
         push @modules, ( split /[,]/msx, $arg );
