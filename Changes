@@ -1,5 +1,22 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+
+0.30    Sat Mar  6 22:54:25 EST 2010
+        cgiapp-starter and titanium-starter had got broken during the last
+        release due to an errant local and were unable to find the default
+        template directory. They should work correctly now.
+
+        t/boilerplate.t in generated dists had got broken during the last
+        set of updates.  It should work correctly now.  It will now also
+        check that you do not have a boilerplate abstract in your buildscript.
+
+        Previously there was support for a generated dist with multiple
+        modules but it didn't really work.  Now it does.  This justifies
+        a bump in the version number I think.
+
+        The RT address in generated modules (for bug reporting) is based on
+        the distro name instead of the module name now.
+
 0.22    Thu Mar  4 01:52:09 EST 2010
         t/00-signature.t was wrong in the module and generated dists.
         Now it will only be carried out if the envvar TEST_SIGNATURE is set.

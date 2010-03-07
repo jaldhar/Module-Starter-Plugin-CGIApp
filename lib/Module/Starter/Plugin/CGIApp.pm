@@ -36,11 +36,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-Version 0.22
+Version 0.30
 
 =cut
 
-our $VERSION = '0.22';
+our $VERSION = '0.30';
 
 =head1 DESCRIPTION
 
@@ -85,7 +85,7 @@ sub create_distro {
     # Supposedly the *-starter scripts can handle multiple --builder options
     # but this doesn't work (and IMO doesn't make sense anyway.) So in the
     # case multiple builders were specified, we just pick the first one.
-    if (ref $self->{builder} eq 'ARRAY') {
+    if ( ref $self->{builder} eq 'ARRAY' ) {
         $self->{builder} = $self->{builder}->[0];
     }
 
