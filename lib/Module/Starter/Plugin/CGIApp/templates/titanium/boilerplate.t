@@ -46,7 +46,7 @@ sub module_boilerplate_ok {
 }
 
 not_in_file_ok(
-    <tmpl_var buildscript> => 'Abstract' => qr/\QAbstract goes here.\E/msx,
+    '<tmpl_var buildscript>' => 'Abstract' => qr/\QAbstract goes here.\E/msx,
 );
 
 not_in_file_ok(

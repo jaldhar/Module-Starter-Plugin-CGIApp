@@ -46,7 +46,7 @@ sub module_boilerplate_ok {
 }
 
 not_in_file_ok(
-    Makefile.PL => 'Abstract' => qr/\QAbstract goes here.\E/msx,
+    'Makefile.PL' => 'Abstract' => qr/\QAbstract goes here.\E/msx,
 );
 
 not_in_file_ok(
