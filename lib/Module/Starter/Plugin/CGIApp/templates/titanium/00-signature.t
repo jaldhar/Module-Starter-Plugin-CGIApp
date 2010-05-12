@@ -3,7 +3,7 @@
 # Test if the modules signature is valid.
 use warnings;
 use strict;
-use Test::More tests => 1;
+use Test::More;
 
 if ( !$ENV{TEST_SIGNATURE} ) {
     plan skip_all =>
