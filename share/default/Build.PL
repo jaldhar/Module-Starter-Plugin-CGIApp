@@ -4,12 +4,12 @@ use warnings;
 use Module::Build;
 
 my $builder = Module::Build->new(
-    dist_name           => 'Example-Dist',
-    module_name         => 'Foo::Bar',
+    dist_name           => '<tmpl_var distro>',
+    module_name         => '<tmpl_var main_module>',
     dist_abstract       => 'Abstract goes here.',
-    dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    license             => 'perl',
-    dist_version_from   => 'lib/Foo/Bar.pm',
+    dist_author         => '<tmpl_var author> <<tmpl_var email>>',
+    license             => '<tmpl_var license>',
+    dist_version_from   => '<tmpl_var main_pm_file>',
     share_dir           => 'share',
     build_requires => {
         'Test::More'                    => 0,
@@ -20,7 +20,7 @@ my $builder = Module::Build->new(
         'CGI::Application'              => 4.04,
         'HTML::Template'                => 0,
     },
-    add_to_cleanup      => [ 'Example-Dist-*' ],
+    add_to_cleanup      => [ '<tmpl_var distro>-*' ],
     create_makefile_pl  => 'traditional',
     sign                => 1,
 );

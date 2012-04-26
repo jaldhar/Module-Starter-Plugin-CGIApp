@@ -9,8 +9,9 @@ build_requires:
   Test::More: 0
   Time::Piece: 1.12
 configure_requires:
-  Module::Build: 0.36
-generated_by: 'Module::Build version 0.3601'
+  Module::Build: 0.38
+dynamic_config: 1
+generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.112621'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -19,8 +20,9 @@ name: Module-Starter-Plugin-CGIApp
 provides:
   Module::Starter::Plugin::CGIApp:
     file: lib/Module/Starter/Plugin/CGIApp.pm
-    version: 0.30
+    version: 0.40
 requires:
+  File::ShareDir: 1.00
   HTML::Template: 0
   Module::Starter: 0
   perl: 5.008
@@ -28,4 +30,4 @@ resources:
   homepage: http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/
   license: http://dev.perl.org/licenses/
   repository: http://github.com/jaldhar/Module-Starter-Plugin-CGIApp
-version: 0.30
+version: 0.40

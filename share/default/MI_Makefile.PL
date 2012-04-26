@@ -1,9 +1,9 @@
 use inc::Module::Install;
 
-name         'Example-Dist';
-all_from     'lib/Foo/Bar.pm';
-author       'Jaldhar H. Vyas';
-license      'perl';
+name         '<tmpl_var distro>';
+all_from     '<tmpl_var main_pm_file>';
+author       '<tmpl_var author>';
+license      '<tmpl_var license>';
 perl_version '5.008';
 
 build_requires 'Test::More'                    => 0;

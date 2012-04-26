@@ -6,7 +6,6 @@ use vars qw(@ISA);
 use blib;
 use Cwd qw( cwd );
 use English qw( -no_match_vars );
-use File::Basename;
 use File::Copy::Recursive qw( dircopy );
 use File::DirCompare;
 use File::Path qw( mkpath rmtree );
@@ -14,8 +13,6 @@ use File::Spec;
 # this has to go before Module::Starter to affect it
 use Test::MockTime qw( set_fixed_time restore_time );
 use Module::Starter qw(
-    Module::Starter::Simple
-    Module::Starter::Plugin::Template
     Module::Starter::Plugin::CGIApp
 );
 use Module::Starter::App;
@@ -95,9 +92,7 @@ sub run_tests {
     # Standardize the test environment so things like differing time zones and
     # line endings don't cause false test failures.
     $ENV{MODULE_STARTER_DIR} = $dir;
-    $ENV{MODULE_TEMPLATE_DIR} =
-        File::Spec->catdir(  dirname($INC{'Module/Starter/Plugin/CGIApp.pm'}), 
-        'CGIApp','templates' );
+    $ENV{MODULE_TEMPLATE_DIR} = File::Spec->catdir(  'share', 'default' );
     $ENV{TZ} = 'UTC';
     Time::Piece::_tzset();  # workaround for lack of POSIX::tzset in strawberry
     set_fixed_time('2010-01-01T00:00:00Z');

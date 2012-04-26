@@ -1,21 +1,21 @@
 
 =head1 NAME
 
-Foo::Bar - The great new Foo::Bar web application!
+<tmpl_var module> - The great new <tmpl_var module> web application!
 
 =head1 SYNOPSIS
 
-    use Foo::Bar;
-    my $app = Foo::Bar->new();
+    use <tmpl_var module>;
+    my $app = <tmpl_var module>->new();
     $app->run();
 
 =head1 ABSTRACT
 
-A brief summary of what Foo::Bar does.
+A brief summary of what <tmpl_var module> does.
 
 =cut
 
-package Foo::Bar;
+package <tmpl_var module>;
 
 use warnings;
 use strict;
@@ -26,7 +26,7 @@ use File::Spec qw ();
 
 =head1 VERSION
 
-This document describes Foo::Bar Version 0.01
+This document describes <tmpl_var module> Version 0.01
 
 =cut
 
@@ -35,7 +35,7 @@ our $VERSION = '0.01';
 =head1 DESCRIPTION
 
 Overview of functionality and purpose of
-web application module Foo::Bar...
+web application module <tmpl_var module>...
 
 =head1 METHODS
 
@@ -58,7 +58,7 @@ sub setup {
     $self->run_modes( [qw/ runmode1 /] );
     if ( !$self->tmpl_path ) {
         $self->tmpl_path(
-            File::Spec->catdir( dist_dir('Example-Dist'), 'templates' ) );
+            File::Spec->catdir( dist_dir('<tmpl_var distro>'), 'templates' ) );
     }
     $self->run_modes( AUTOLOAD => 'runmode1' );
     return;
@@ -119,8 +119,8 @@ TODO: Other methods in your public interface go here.
 There are no known problems with this module.
 
 Please report any bugs or feature requests to
-C<bug-example-dist at rt.cpan.org>, or through the web interface at
-L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Example-Dist>.
+C<bug-<tmpl_var rtname> at rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=<tmpl_var distro>>.
 I will be notified, and then you'll automatically be notified of progress on
 your bug as I make changes.
 
@@ -134,25 +134,19 @@ List acknowledgements here or delete this section.
 
 =head1 AUTHOR
 
-Jaldhar H. Vyas, C<< <jaldhar at braincells.com> >>
+<tmpl_var author>, C<< <<tmpl_var email_obfuscated>> >>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2010 Jaldhar H. Vyas, all rights reserved.
+Copyright <tmpl_var year> <tmpl_var author>, all rights reserved.
 
-This distribution is free software; you can redistribute it and/or modify it
-under the terms of either:
-
-a) the GNU General Public License as published by the Free Software
-Foundation; either version 2, or (at your option) any later version, or
-
-b) the Artistic License version 2.0.
+<tmpl_var license_blurb>
 
 The full text of the license can be found in the LICENSE file included
 with this distribution.
 
 =cut
 
-1;    # End of Foo::Bar
+1;    # End of <tmpl_var module>
 
 __END__

@@ -10,3 +10,4 @@
 .svn
 .tmp
 ^MYMETA.yml$
+^MYMETA\.json$

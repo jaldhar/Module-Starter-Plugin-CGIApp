@@ -4,11 +4,11 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 WriteMakefile(
-    NAME                => 'Example-Dist',
-    VERSION_FROM        => 'lib/Foo/Bar.pm',
-    ABSTRACT_FROM       => 'lib/Foo/Bar.pm',
-    AUTHOR              => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    LICENSE             => 'perl',
+    NAME                => '<tmpl_var distro>',
+    VERSION_FROM        => '<tmpl_var main_pm_file>',
+    ABSTRACT_FROM       => '<tmpl_var main_pm_file>',
+    AUTHOR              => '<tmpl_var author> <<tmpl_var email>>',
+    LICENSE             => '<tmpl_var license>',
     PL_FILES            => {},
     PREREQ_PM => {
         'CGI::Application'              => 4.04,
@@ -18,5 +18,5 @@ WriteMakefile(
     },
     SIGN => 1,
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
-    clean               => { FILES => 'Example-Dist-*' },
+    clean               => { FILES => '<tmpl_var distro>-*' },
 );

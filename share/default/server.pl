@@ -2,9 +2,9 @@ use warnings;
 use strict;
 use CGI::Application::Server;
 use lib 'lib';
-use Foo::Bar;
+use <tmpl_var main_module>;
 
-my $app = Foo::Bar->new(
+my $app = <tmpl_var main_module>->new(
     TMPL_PATH => './share/templates',
     PARAMS    => {
 

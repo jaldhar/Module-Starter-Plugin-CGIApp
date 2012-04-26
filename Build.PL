@@ -3,56 +3,18 @@ use warnings;
 use File::Find;
 use Module::Build;
 
-my $subclass = Module::Build->subclass(code => <<'EOT');
-sub _find_pods {
-    my ($self, $dirs, %args) = @_;
-
-    my $files = $self->SUPER::_find_pods($dirs, %args);
-
-    foreach (grep { m{^blib/lib/Module/Starter/Plugin/CGIApp/templates}; } keys %{$files} ) {
-        delete $files->{$_};
-    }
-    
-    return $files;
-}
-
-sub find_PL_files {
-    my $self = shift;
-
-    my $out = $self->SUPER::find_PL_files;
-
-    foreach (grep { m{^lib/Module/Starter/Plugin/CGIApp/templates}; } keys %{$out} ) {
-        delete $out->{$_};
-    }
-    
-    return $out;
-}
-EOT
-
-my $builder = $subclass->new(
+my $builder = Module::Build->new(
     module_name         => 'Module::Starter::Plugin::CGIApp',
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    dist_version        => '0.30',
+    dist_version        => '0.40',
+    share_dir           => 'share',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
     },
     script_files            => {
         'script/cgiapp-starter' => [],
         'script/titanium-starter' => [],
-    },
-    tmpl_files          => eval { 
-        my %tmpls; File::Find::find(
-            {
-                wanted => sub {
-                    if ( -f $_ ) {
-                        $tmpls{$File::Find::name} = $File::Find::name;
-                    }
-                },
-            }, 
-            'lib/Module/Starter/Plugin/CGIApp/templates/',
-        );
-        return \%tmpls;
     },
     build_requires      => {
         'File::Copy::Recursive' => 0,

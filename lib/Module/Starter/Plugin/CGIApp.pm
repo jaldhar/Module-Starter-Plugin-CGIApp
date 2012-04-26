@@ -6,8 +6,6 @@ Module::Starter::Plugin::CGIApp - template based module starter for CGI apps.
 =head1 SYNOPSIS
 
     use Module::Starter qw(
-        Module::Starter::Simple
-        Module::Starter::Plugin::Template
         Module::Starter::Plugin::CGIApp
     );
 
@@ -15,14 +13,15 @@ Module::Starter::Plugin::CGIApp - template based module starter for CGI apps.
 
 =head1 ABSTRACT
 
-This is a plugin for L<Module::Starter> that builds you a skeleton 
-L<CGI::Application> module with all the extra files needed to package it for 
-CPAN. You can customize the output using L<HTML::Template>.
+This is a plugin for L<Module::Starter|Module::Starter> that builds you a skeleton 
+L<CGI::Application|CGI::Application> module with all the extra files needed to package it for 
+CPAN. You can customize the output using L<HTML::Template|HTML::Template>.
 
 =cut
 
 package Module::Starter::Plugin::CGIApp;
 
+use base 'Module::Starter::Simple';
 use warnings;
 use strict;
 use Carp qw( croak );
@@ -31,56 +30,56 @@ use File::Basename;
 use File::Path qw( mkpath );
 use File::Spec ();
 use Module::Starter::BuilderSet;
-use Module::Starter::Simple;
 use HTML::Template;
 
 =head1 VERSION
 
-Version 0.30
+This document describes version 0.40
 
 =cut
 
-our $VERSION = '0.30';
+our $VERSION = '0.40';
 
 =head1 DESCRIPTION
 
-This module subclasses L<Module::Starter::Plugin::Template> which in turn 
-subclasses L<Module::Starter::Simple>. This document only describes the methods
-which are overriden from those modules or are new.
+This module subclasses L<Module::Starter::Simple|Module::Starter::Simple> and
+includes functionality similar to L<Module::Starter::Plugin::Template|Module::Starter::Plugin::Template>.
+This document only describes the methods which are overriden from those modules or are new.
 
 Only developers looking to extend this module need to read this. If you just 
-want to use L<Module::Starter::Plugin::CGIApp>, read the docs for 
-L<cgiapp-starter> or L<titanium-starter> instead.
+want to use L<Module::Starter::Plugin::CGIApp|Module::Starter::Plugin::CGIApp>, read the docs for 
+L<cgiapp-starter|cgiapp-starter> or L<titanium-starter|titanium-starter> instead.
 
 =head1 METHODS
 
 =head2 new ( %args )
 
 This method calls the C<new> supermethod from 
-L<Module::Starter::Plugin::Template> and then initializes the template store 
-and renderer. (See C<templates> and C<renderer> below.)
+L<Module::Starter::Plugin::Simple|Module::Starter::Plugin::Simple> and then
+initializes the template store. (See C<templates>.)
 
 =cut
 
 sub new {
-    my ( $class, @opts ) = @_;
-    my $self = $class->SUPER::new(@opts);
+    my ( $proto, %opts ) = @_;
+    my $class = ref $proto || $proto;
 
+    my $self = $class->SUPER::new(%opts);
     $self->{templates} = { $self->templates };
-    $self->{renderer}  = $self->renderer;
+
     return bless $self => $class;
 }
 
 =head2 create_distro ( %args ) 
 
-This method works as advertised in L<Module::Starter>.
+This method works as advertised in L<Module::Starter|Module::Starter>.
 
 =cut
 
 sub create_distro {
-    my ( $class, @opts ) = @_;
-
-    my $self = $class->new(@opts);
+    my ( $either, %opts ) = @_;
+    ( ref $either ) or $either = $either->new(%opts);
+    my $self = $either;
 
     # Supposedly the *-starter scripts can handle multiple --builder options
     # but this doesn't work (and IMO doesn't make sense anyway.) So in the
@@ -122,13 +121,11 @@ sub create_distro {
     $self->{basedir} = $self->{dir} || $self->{distro};
     $self->create_basedir;
 
-    my @distroparts = split /-/msx, $self->{distro};
-    $self->{templatedir} = join q{/}, ( 'lib', @distroparts, 'templates' );
-
     my @files;
     push @files, $self->create_modules( @{ $self->{modules} } );
 
     push @files, $self->create_t( @{ $self->{modules} } );
+    push @files, $self->create_xt( @{ $self->{modules} } );
     push @files, $self->create_tmpl();
     my %build_results = $self->create_build();
     push @files, @{ $build_results{files} };
@@ -140,7 +137,20 @@ sub create_distro {
     push @files, $self->create_perlcriticrc;
     push @files, $self->create_server_pl;
     push @files, 'MANIFEST';
-    $self->create_MANIFEST( grep { $_ ne 't/boilerplate.t' } @files );
+    $self->create_MANIFEST( sub { _create_manifest( $self, @files ) } );
+
+    return;
+}
+
+sub _create_manifest {
+    my ( $self, @files ) = @_;
+
+    my $file = File::Spec->catfile( $self->{basedir}, 'MANIFEST' );
+    open my $fh, '>', $file or croak "Can't open file $file: $OS_ERROR\n";
+    foreach my $file ( sort @files ) {
+        print {$fh} "$file\n" or croak "$OS_ERROR\n";
+    }
+    close $fh or croak "Can't close file $file: $OS_ERROR\n";
 
     return;
 }
@@ -182,7 +192,7 @@ sub create_MANIFEST_SKIP {    ## no critic 'NamingConventions::Capitalization'
 =head2 create_modules( @modules )
 
 This method will create a starter module file for each module named in 
-I<@modules>.  It is only subclassed from L<Module::Starter::Simple> here 
+I<@modules>.  It is only subclassed from L<Module::Starter::Simple|Module::Starter::Simple> here 
 so we can change the I<rtname> tmpl_var to be the distro name instead of 
 the module name.
 
@@ -203,15 +213,15 @@ sub create_modules {
 
 =head2 create_perlcriticrc( )
 
-This method creates a C<perlcriticrc> in the distribution's test directory so 
-that the behavior of C<perl-critic.t> can be modified.
+This method creates a C<perlcriticrc> in the distribution's author test
+directory so that the behavior of C<perl-critic.t> can be modified.
 
 =cut
 
 sub create_perlcriticrc {
     my $self = shift;
 
-    my @dirparts = ( $self->{basedir}, 't' );
+    my @dirparts = ( $self->{basedir}, 'xt' );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
         mkpath($tdir);
@@ -222,7 +232,7 @@ sub create_perlcriticrc {
     $self->create_file( $fname, $self->perlcriticrc_guts() );
     $self->progress("Created $fname");
 
-    return 't/perlcriticrc';
+    return 'xt/perlcriticrc';
 }
 
 =head2 create_server_pl( )
@@ -274,7 +284,7 @@ sub create_t {
 =head2 create_tmpl( )
 
 This method takes all the template files ending in .html (representing 
-L<HTML::Template>'s and installs them into a directory under the distro tree.  
+L<HTML::Template|HTML::Template>'s and installs them into a directory under the distro tree.  
 For instance if the distro was called C<Foo-Bar>, the templates would be 
 installed in C<lib/Foo/Bar/templates>.
 
@@ -288,15 +298,48 @@ sub create_tmpl {
     return $self->tmpl_guts();
 }
 
+=head2 create_xt( @modules )
+
+This method creates a bunch of *.t files for author tests.  I<@modules> is a
+list of all modules in the distribution.
+
+=cut
+
+sub create_xt {
+    my ( $self, @modules ) = @_;
+
+    my %xt_files = $self->xt_guts(@modules);
+
+    my @files = map { $self->_create_xt( $_, $xt_files{$_} ) } keys %xt_files;
+
+    return @files;
+}
+
+sub _create_xt {
+    my ( $self, $filename, $content ) = @_;
+
+    my @dirparts = ( $self->{basedir}, 'xt' );
+    my $xtdir = File::Spec->catdir(@dirparts);
+    if ( not -d $xtdir ) {
+        mkpath($xtdir);
+        $self->progress("Created $xtdir");
+    }
+
+    my $fname = File::Spec->catfile( @dirparts, $filename );
+    $self->create_file( $fname, $content );
+    $self->progress("Created $fname");
+
+    return "xt/$filename";
+}
+
 =head2 render( $template, \%options )
 
-This method is subclassed from L<Module::Starter::Plugin::Template>.
-
-It is given an L<HTML::Template> and options and returns the resulting document.
+This method is given an L<HTML::Template|HTML::Template> and options and
+returns the resulting document.
 
 Data in the C<Module::Starter> object which represents a reference to an array 
 @foo is transformed into an array of hashes with one key called 
-C<$foo_item> in order to make it usable in an L<HTML::Template> C<TMPL_LOOP>.
+C<$foo_item> in order to make it usable in an L<HTML::Template|HTML::Template> C<TMPL_LOOP>.
 For example:
 
     $data = ['a'. 'b', 'c'];
@@ -354,24 +397,9 @@ sub render {
     return $t->output;
 }
 
-=head2 renderer ( )
-
-This method is subclassed from L<Module::Starter::Plugin::Template> but
-doesn't do anything as the actual template is created by C<render> in this 
-implementation.
-
-=cut
-
-sub renderer {
-    my ($self) = @_;
-    return;
-}
-
 =head2 templates ( )
 
-This method is subclassed from L<Module::Starter::Plugin::Template>.
-
-It reads in the template files and populates the object's templates 
+This method reads in the template files and populates the object's templates
 attribute. The module template directory is found by checking the 
 C<MODULE_TEMPLATE_DIR> environment variable and then the config option 
 C<template_dir>.
@@ -401,6 +429,24 @@ sub templates {
     }
 
     return %template;
+}
+
+=head2 Build_PL_guts($main_module, $main_pm_file)
+
+This method is called by L<create_Build_PL|create_Build_PL> and returns text used to populate
+Build.PL when the builder is L<Module::Build|Module::Build>; I<$main_pm_file>
+is the filename of the distribution's main module, I<$main_module>.
+
+=cut
+
+sub Build_PL_guts {    ## no critic 'NamingConventions::Capitalization'
+    my ( $self, $main_module, $main_pm_file ) = @_;
+    my %options;
+    $options{main_module}  = $main_module;
+    $options{main_pm_file} = $main_pm_file;
+
+    my $template = $self->{templates}{'Build.PL'};
+    return $self->render( $template, \%options );
 }
 
 =head2 Changes_guts
@@ -434,9 +480,11 @@ sub LICENSE_guts {    ## no critic 'NamingConventions::Capitalization'
 sub _license_blurb {
     my $self = shift;
     my $license_blurb;
+    my $license_record = $self->_license_record();
 
-    if ( $self->{license} eq 'perl' ) {
-        $license_blurb = <<'EOT';
+    if ( defined $license_record ) {
+        if ( $license_record->{license} eq 'perl' ) {
+            $license_blurb = <<'EOT';
 This distribution is free software; you can redistribute it and/or modify it
 under the terms of either:
 
@@ -445,6 +493,10 @@ Foundation; either version 2, or (at your option) any later version, or
 
 b) the Artistic License version 2.0.
 EOT
+        }
+        else {
+            $license_blurb = $license_record->{blurb};
+        }
     }
     else {
         $license_blurb = <<"EOT";
@@ -453,6 +505,25 @@ EOT
     }
     chomp $license_blurb;
     return $license_blurb;
+}
+
+=head2 Makefile_PL_guts($main_module, $main_pm_file)
+
+This method is called by L<create_Makefile_PL|create_Makefile_PL> and returns text used to populate
+Makefile.PL when the builder is L<ExtUtils::MakeMaker|ExtUtils::MakeMaker>;
+I<$main_pm_file> is the filename of the distribution's main module,
+I<$main_module>.
+
+=cut
+
+sub Makefile_PL_guts {    ## no critic 'NamingConventions::Capitalization'
+    my ( $self, $main_module, $main_pm_file ) = @_;
+    my %options;
+    $options{main_module}  = $main_module;
+    $options{main_pm_file} = $main_pm_file;
+
+    my $template = $self->{templates}{'Makefile.PL'};
+    return $self->render( $template, \%options );
 }
 
 =head2 MANIFEST_SKIP_guts
@@ -466,6 +537,56 @@ sub MANIFEST_SKIP_guts {    ## no critic 'NamingConventions::Capitalization'
     my %options;
 
     my $template = $self->{templates}{'MANIFEST.SKIP'};
+    return $self->render( $template, \%options );
+}
+
+=head2 MI_Makefile_PL_guts($main_module, $main_pm_file)
+
+This method is called by L<create_MI_Makefile_PL|create_MI_Makefile_PL> and returns text used to populate
+Makefile.PL when the builder is L<Module::Install|Module::Install>;
+I<$main_pm_file> is the filename of the distribution's main module,
+I<$main_module>.
+
+=cut
+
+sub MI_Makefile_PL_guts {    ## no critic 'NamingConventions::Capitalization'
+    my ( $self, $main_module, $main_pm_file ) = @_;
+    my %options;
+    $options{main_module}  = $main_module;
+    $options{main_pm_file} = $main_pm_file;
+
+    my $template = $self->{templates}{'MI_Makefile.PL'};
+    return $self->render( $template, \%options );
+}
+
+=head2 module_guts($module, $rtname)
+
+Implements the creation of a C<README> file.
+
+=cut
+
+sub module_guts {
+    my ( $self, $module, $rtname ) = @_;
+    my %options;
+    $options{module} = $module;
+    $options{rtname} = $rtname;
+
+    my $template = $self->{templates}{'Module.pm'};
+    return $self->render( $template, \%options );
+}
+
+=head2 README_guts($build_instructions)
+
+Implements the creation of a C<README> file.
+
+=cut
+
+sub README_guts {    ## no critic 'NamingConventions::Capitalization'
+    my ( $self, $build_instructions ) = @_;
+    my %options;
+    $options{build_instructions} = $build_instructions;
+
+    my $template = $self->{templates}{'README'};
     return $self->render( $template, \%options );
 }
 
@@ -498,9 +619,10 @@ sub server_pl_guts {
     return $self->render( $template, \%options );
 }
 
-=head2 t_guts
+=head2 t_guts(@modules)
 
-Implements the creation of test files.
+Implements the creation of test files. I<@modules> is a list of all the modules
+in the distribution.
 
 =cut
 
@@ -533,9 +655,7 @@ sub tmpl_guts {
     my ($self) = @_;
     my %options;    # unused in this function.
 
-    # we need the directory seperator to be / regardless of OS
-    my $reldir = join q{/}, File::Spec->splitdir( $self->{templatedir} );
-    my @dirparts = ( $self->{basedir}, $self->{templatedir} );
+    my @dirparts = ( $self->{basedir}, 'share', 'templates' );
     my $tdir = File::Spec->catdir(@dirparts);
     if ( not -d $tdir ) {
         mkpath($tdir);
@@ -550,17 +670,44 @@ sub tmpl_guts {
         my $fname = File::Spec->catfile( @dirparts, $filename );
         $self->create_file( $fname, $template );
         $self->progress("Created $fname");
-        push @t_files, "$reldir/$filename";
+        push @t_files, "share/templates/$filename";
     }
 
     return @t_files;
+}
+
+=head2 xt_guts(@modules)
+
+Implements the creation of test files for author tests. I<@modules> is a list
+of all the modules in the distribution.
+
+=cut
+
+sub xt_guts {
+    my ( $self, @opts ) = @_;
+    my %options;
+    $options{modules}     = [@opts];
+    $options{modulenames} = [];
+    foreach ( @{ $options{modules} } ) {
+        push @{ $options{module_pm_files} }, $self->_module_to_pm_file($_);
+    }
+
+    my %xt_files;
+
+    foreach ( grep { /[.]xt\z/msx } keys %{ $self->{templates} } ) {
+        my $template = $self->{templates}{$_};
+        $_ =~ s/[.]xt\z/.t/msx;    # change *.xt back to *.t
+        $xt_files{$_} = $self->render( $template, \%options );
+    }
+
+    return %xt_files;
 }
 
 =head1 BUGS
 
 Please report any bugs or feature requests to 
 C<bug-module-starter-plugin-cgiapp at rt.cpan.org>, or through the web 
-interface at L<http://rt.cpan.org>. I will be notified, and then you'll 
+interface at L<rt.cpan.org|http://rt.cpan.org>. I will be notified, and then you'll 
 automatically be notified of progress on your bug as I make changes.
 
 =head1 AUTHOR
@@ -584,9 +731,9 @@ with this distribution.
 
 =head1 SEE ALSO
 
-L<cgiapp-starter>, L<titanium-starter>, L<Module::Starter>, 
-L<Module::Starter::Simple>, L<Module::Starter::Plugin::Template>. 
-L<CGI::Application>, L<Titanium>, L<HTML::Template>
+L<cgiapp-starter|cgiapp-starter>, L<titanium-starter|titanium-starter>, L<Module::Starter|Module::Starter>, 
+L<Module::Starter::Simple|Module::Starter::Simple>, L<Module::Starter::Plugin::Template|Module::Starter::Plugin::Template>. 
+L<CGI::Application|CGI::Application>, L<Titanium|Titanium>, L<HTML::Template|HTML::Template>
 
 =cut
 

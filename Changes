@@ -1,10 +1,35 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
-UNRELEASED
-        Instead of pgp.mit.edu, t/00-signature.t in generated dists will now
-        use pool.sks-keyservers.net for key queries.
+0.40    Thu May 10 22:58:23 EDT 2012
 
-        MANIFEST.SKIP in generated dists will also skip .git
+        Internal:
+        ---------
+
+        Breakage caused by newer versions of Module::Starter (RT#71734) has
+        been fixed.
+
+        Module has been updated to use the latest features of Module::Starter.
+
+        Author tests have been moved into xt directory and brought up to
+        current best practices.
+
+        Templates have been moved into a share directory using File::ShareDir.
+
+        Templates have been improved in various minor ways.
+
+        In Created distributions:
+        -------------------------
+
+        Author tests are brought up to current best practices and now go into
+        the xt directory so they don't have to be run by end users.
+
+        Templates go into a shared directory using File::ShareDir instead
+        of the old method of putting them in @INC
+
+        Instead of pgp.mit.edu, t/00-signature.t will now use
+        pool.sks-keyservers.net for key queries.
+
+        MANIFEST.SKIP will also skip .git
 
 0.30    Sat Mar  6 22:54:25 EST 2010
         cgiapp-starter and titanium-starter had got broken during the last

@@ -9,22 +9,19 @@ cgiapp-starter - creates a skeleton CGI::Application project
 use warnings;
 use strict;
 
-our $VERSION = '0.20';
+our $VERSION = '0.30';
 
 use Module::Starter qw(
-  Module::Starter::Simple
-  Module::Starter::Plugin::Template
   Module::Starter::Plugin::CGIApp
 );
 
-# Provide a sane defailt
-use File::Basename;
+# Provide a sane default
+use File::ShareDir qw( dist_dir );
 use File::Spec;
 if ( !$ENV{MODULE_TEMPLATE_DIR} ) {
     $ENV{MODULE_TEMPLATE_DIR}
       =    ## no critic 'Variables/RequireLocalizedPunctuationVars'
-      File::Spec->catdir( dirname( $INC{'Module/Starter/Plugin/CGIApp.pm'} ),
-        'CGIApp', 'templates' );
+      File::Spec->catdir( dist_dir('Module-Starter-Plugin-CGIApp'), 'default' );
 }
 
 use Module::Starter::App;
@@ -32,31 +29,34 @@ Module::Starter::App->run;
 
 =head1 SYNOPSIS
 
- cgiapp-starter --module=MyApp --author="Andy Lester" --email=andy@petdance.com
+ cgiapp-starter --module=MyApp --author="Jaldhar H. Vyas" --email=jaldhar@braincells.com
 
 Result:
 
     MyApp
+    MyApp/Changes
     MyApp/lib
     MyApp/lib/MyApp.pm
-    MyApp/lib/MyApp/templates/runmode1.html
+    MyApp/LICENSE
+    MyApp/Makefile.PL
+    MyApp/MANIFEST.SKIP
+    MyApp/MANIFEST
+    MyApp/README
+    MyApp/server.pl
+    MyApp/share/templates
+    MyApp/share/templates/runmode1.html
     MyApp/t
     MyApp/t/00-signature.t
     MyApp/t/01-load.t
     MyApp/t/boilerplate.t
-    MyApp/t/perlcriticrc
-    MyApp/t/perl-critic.t
-    MyApp/t/pod-coverage.t
-    MyApp/t/pod.t
     MyApp/t/test-app.t
     MyApp/t/www
-    MyApp/t/PUT.STATIC.CONTENT.HERE
-    MyApp/Makefile.PL
-    MyApp/Changes
-    MyApp/README
-    MyApp/MANIFEST.SKIP
-    MyApp/MANIFEST
-    MyApp/server.pl
+    MyApp/t/www/PUT.STATIC.CONTENT.HERE
+    MyApp/xt
+    MyApp/xt/perlcriticrc
+    MyApp/xt/perl-critic.t
+    MyApp/xt/pod-coverage.t
+    MyApp/xt/pod.t
 
 Options:
 
@@ -80,22 +80,14 @@ Options:
 
 =head1 DESCRIPTION
 
-Set up the skeleton of a CGI::Application-based project, including a module,
+Set up the skeleton of a L<CGI::Application|CGI::Application>-based project, including a module,
 some templates and some automated tests. 
 
-By default the skeleton files will come within the C<templates/> directory
-where Module::Starter::Plugin::CGIApp is stored. 
-
-Multiple --builder options may be supplied to produce the files for multiple
-builders.
+By default the skeleton files will come within a shared directory
+where L<Module::Starter::Plugin::CGIApp|Module::Starter::Plugin::CGIApp> is stored.
+See L<File::ShareDir|File::ShareDir> for more information on how this works.
 
 =head1 CONFIGURATION
-
-You may set new defaults in a config file:
-
- author: Mark Stosberg
- email: mark@summersault.com
- template_dir: ~/.module-starter/cgiapp/templates
 
 cgiapp-starter will look for a configuration file before reading its command
 line parameters.  The default location is C<$HOME/.module-starter/config> but
@@ -106,10 +98,10 @@ The configuration file is just a list of names and values, separated by colons.
 Values that take lists are just space separated.  A sample configuration file
 might read:
 
- author: Ricardo SIGNES
- email:  rjbs@cpan.org
- plugins: Module::Starter::Simple Module::Starter::Plugin::XYZ
- xyz_option: red green blue
+ author: Jaldhar H. Vyas
+ email: jaldhar@braincells.com
+ template_dir: ~/.module-starter/cgiapp/templates
+ colors: red green blue
 
 This format may become more elaborate in the future, but a file of this type
 should remain valid.

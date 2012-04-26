@@ -21,6 +21,8 @@ use warnings;
 use strict;
 use base 'CGI::Application';
 use Carp qw( croak );
+use File::ShareDir qw( dist_dir );
+use File::Spec qw ();
 
 =head1 VERSION
 
@@ -55,14 +57,8 @@ sub setup {
     $self->error_mode('runmode1');
     $self->run_modes( [qw/ runmode1 /] );
     if ( !$self->tmpl_path ) {
-        ( my $tp = 'Example-Dist' ) =~ s{-}{/}gmsx;
-        $tp .= '/templates';
-        foreach my $inc (@INC) {
-            if ( -d "$inc/$tp" ) {
-                $self->tmpl_path("$inc/$tp");
-                last;
-            }
-        }
+        $self->tmpl_path(
+            File::Spec->catdir( dist_dir('Example-Dist'), 'templates' ) );
     }
     $self->run_modes( AUTOLOAD => 'runmode1' );
     return;
@@ -130,7 +126,7 @@ your bug as I make changes.
 
 =head1 SEE ALSO
 
-L<CGI::Application>
+L<CGI::Application|CGI::Application>
 
 =head1 THANKS
 
