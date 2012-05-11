@@ -1,23 +1,9 @@
 #!/usr/bin/make -f
 
-build: build-stamp
-build-stamp:
-	dh build
-	touch $@
-
-clean:
+%:
 	dh $@
 
-install: install-stamp
-install-stamp: build-stamp
-	dh install
-	touch $@
-
-binary-arch:
-
-binary-indep: install
-	dh $@
-
-binary: binary-arch binary-indep
-
-.PHONY: binary binary-arch binary-indep install clean build
+override_dh_auto_install:
+	dh_auto_install
+	-rm $(CURDIR)/debian/libmodule-starter-plugin-cgiapp-perl/usr/share/man/man3/auto::share::dist::Module-Starter-Plugin-CGIApp::default::Module.3pm
+	-rm $(CURDIR)/debian/libmodule-starter-plugin-cgiapp-perl/usr/share/man/man3/auto::share::dist::Module-Starter-Plugin-CGIApp::titanium::Module.3pm
