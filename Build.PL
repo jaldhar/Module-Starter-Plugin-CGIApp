@@ -7,7 +7,7 @@ my $builder = Module::Build->new(
     module_name         => 'Module::Starter::Plugin::CGIApp',
     license             => 'perl',
     dist_author         => 'Jaldhar H. Vyas <jaldhar@braincells.com>',
-    dist_version        => '0.40',
+    dist_version        => '0.41',
     share_dir           => 'share',
     pm_files            => {
         'lib/Module/Starter/Plugin/CGIApp.pm' => 'lib/Module/Starter/Plugin/CGIApp.pm',
@@ -25,6 +25,7 @@ my $builder = Module::Build->new(
     },
     requires            => {
         'perl'                  => 5.008,
+        'File::ShareDir'        => 0,
         'Module::Starter'       => 0,
         'HTML::Template'        => 0,
     },
@@ -39,6 +40,5 @@ my $builder = Module::Build->new(
     sign                => 1,
 );
 
-$builder->add_build_element('tmpl');
 $builder->create_build_script();
 

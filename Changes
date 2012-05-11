@@ -1,5 +1,15 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.41    Thu May 10 23:54:01 EDT 2012
+
+        Internal:
+        ---------
+
+        Forgot to mention File::ShareDir as a dependency.
+
+        While I'm at it, I normalized the format of copyright statements
+        everywhere and updated the copyright year of this distro to 2012.
+
 0.40    Thu May 10 22:58:23 EDT 2012
 
         Internal:

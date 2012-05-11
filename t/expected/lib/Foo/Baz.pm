@@ -138,7 +138,7 @@ Jaldhar H. Vyas, C<< <jaldhar at braincells.com> >>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2010 Jaldhar H. Vyas, all rights reserved.
+Copyright (C) 2010, Jaldhar H. Vyas.  All rights reserved.
 
 This distribution is free software; you can redistribute it and/or modify it
 under the terms of either:

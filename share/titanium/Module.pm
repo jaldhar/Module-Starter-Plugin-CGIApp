@@ -138,7 +138,7 @@ List acknowledgements here or delete this section.
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright <tmpl_var year> <tmpl_var author>, all rights reserved.
+Copyright (C) <tmpl_var year>, <tmpl_var author>.  All rights reserved.
 
 <tmpl_var license_blurb>
 
