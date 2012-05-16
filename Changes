@@ -1,5 +1,19 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+0.42	Wed May 16 19:17:15 EDT 2012
+
+        Internal:
+        ---------
+
+        The license of this module is "Same as Perl" which somewhere along
+        the line I thought meant GPL 2+/Artistic 2+ when actually it is
+        GPL 1+/Artistic 1+.  This is now fixed in all the relevant places.
+
+        In Created distributions:
+        -------------------------
+
+        The same license confusion occurred here too.  Fixed.
+
 0.41    Thu May 10 23:54:01 EDT 2012
 
         Internal:
