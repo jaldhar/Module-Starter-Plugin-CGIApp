@@ -34,11 +34,11 @@ use HTML::Template;
 
 =head1 VERSION
 
-This document describes version 0.41
+This document describes version 0.42
 
 =cut
 
-our $VERSION = '0.41';
+our $VERSION = '0.42';
 
 =head1 DESCRIPTION
 
