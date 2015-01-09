@@ -1,4 +1,3 @@
-
 =head1 NAME
 
 Module::Starter::Plugin::CGIApp - template based module starter for CGI apps.
@@ -44,7 +43,7 @@ our $VERSION = '0.42';
 
 This module subclasses L<Module::Starter::Simple|Module::Starter::Simple> and
 includes functionality similar to L<Module::Starter::Plugin::Template|Module::Starter::Plugin::Template>.
-This document only describes the methods which are overriden from those modules or are new.
+This document only describes the methods which are overridden from those modules or are new.
 
 Only developers looking to extend this module need to read this. If you just 
 want to use L<Module::Starter::Plugin::CGIApp|Module::Starter::Plugin::CGIApp>, read the docs for 
