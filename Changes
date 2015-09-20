@@ -1,5 +1,22 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
+
+0.43    Sun Sep 20 04:43:35 EDT 2015
+
+        Internal:
+        ---------
+
+        Fixed to work with newer versions of Module-Starter. RT #101984, #66240
+
+        Added dependency on Module::Starter >= 1.70
+
+        In Created distributions:
+        -------------------------
+
+        t/boilerplate.t is added to MANIFEST.
+
+        More work still needs to be done for Module-Starter parity...
+
 0.42	Wed May 16 19:17:15 EDT 2012
 
         Internal:
