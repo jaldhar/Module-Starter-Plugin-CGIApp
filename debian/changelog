@@ -1,3 +1,14 @@
+libmodule-starter-plugin-cgiapp-perl (0.44-1) unstable; urgency=medium
+
+  * New upstream version that works properly with Module::Starter 1.70
+    (Closes: #796535)
+  * Thanks to Gregor Hermann <gregoa@debian.org> for the following:
+    + make (build) dependency on libmodule-starter-perl versioned.
+    + Move libmodule-build-perl from B-D-I to Build-Depends.
+      It's needed during clean.
+
+ -- Jaldhar H. Vyas <jaldhar@debian.org>  Sun, 20 Sep 2015 05:29:56 -0400
+
 libmodule-starter-plugin-cgiapp-perl (0.42-1) unstable; urgency=low
 
   * New upstream version.
