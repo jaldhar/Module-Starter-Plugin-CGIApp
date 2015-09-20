@@ -262,7 +262,7 @@ sub create_t {
 
     my %t_files = $self->t_guts(@modules);
 
-    my @files = map { $self->_create_t( $_, $t_files{$_} ) } keys %t_files;
+    my @files = map { $self->_create_t( 't',  $_, $t_files{$_} ) }  keys %t_files;
 
     # This next part is for the static files dir t/www
     my @dirparts = ( $self->{basedir}, 't', 'www' );
@@ -309,26 +309,9 @@ sub create_xt {
 
     my %xt_files = $self->xt_guts(@modules);
 
-    my @files = map { $self->_create_xt( $_, $xt_files{$_} ) } keys %xt_files;
+    my @files = map { $self->_create_t( 'xt', $_, $xt_files{$_} ) } keys %xt_files;
 
     return @files;
-}
-
-sub _create_xt {
-    my ( $self, $filename, $content ) = @_;
-
-    my @dirparts = ( $self->{basedir}, 'xt' );
-    my $xtdir = File::Spec->catdir(@dirparts);
-    if ( not -d $xtdir ) {
-        mkpath($xtdir);
-        $self->progress("Created $xtdir");
-    }
-
-    my $fname = File::Spec->catfile( @dirparts, $filename );
-    $self->create_file( $fname, $content );
-    $self->progress("Created $fname");
-
-    return "xt/$filename";
 }
 
 =head2 render( $template, \%options )
