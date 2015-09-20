@@ -4,7 +4,7 @@
       "Jaldhar H. Vyas <jaldhar@braincells.com>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110440",
+   "generated_by" : "Module::Build version 0.4214",
    "license" : [
       "perl_5"
    ],
@@ -16,23 +16,23 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "File::Copy::Recursive" : 0,
-            "File::DirCompare" : 0,
-            "Test::MockTime" : 0,
-            "Test::More" : 0,
+            "File::Copy::Recursive" : "0",
+            "File::DirCompare" : "0",
+            "Test::MockTime" : "0",
+            "Test::More" : "0",
             "Time::Piece" : "1.12"
          }
       },
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.42"
          }
       },
       "runtime" : {
          "requires" : {
             "File::ShareDir" : "1.00",
-            "HTML::Template" : 0,
-            "Module::Starter" : 0,
+            "HTML::Template" : "0",
+            "Module::Starter" : "1.7",
             "perl" : "5.008"
          }
       }
@@ -40,7 +40,7 @@
    "provides" : {
       "Module::Starter::Plugin::CGIApp" : {
          "file" : "lib/Module/Starter/Plugin/CGIApp.pm",
-         "version" : "0.41"
+         "version" : "0.44"
       }
    },
    "release_status" : "stable",
@@ -53,5 +53,5 @@
          "url" : "http://github.com/jaldhar/Module-Starter-Plugin-CGIApp"
       }
    },
-   "version" : "0.42"
+   "version" : "0.44"
 }

@@ -51,7 +51,7 @@ This module requires these other modules:
 perl 5.008
 File::ShareDir
 HTML::Template
-Module::Starter
+Module::Starter        1.70
 
 At build time you will need the above modules plus the following if you want
 to run the tests:

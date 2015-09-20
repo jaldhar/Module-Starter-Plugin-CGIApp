@@ -1,6 +1,11 @@
 Revision history for Module-Starter-Plugin-CGIApp
 
 
+0.44    Sun Sep 20 05:09:32 EDT 2015
+
+        *sigh* git screwup means some of the metadata might not actually match
+        what's in the package.  Uploading a new version just to be sure.
+
 0.43    Sun Sep 20 04:43:35 EDT 2015
 
         Internal:
