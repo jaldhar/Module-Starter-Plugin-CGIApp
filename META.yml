@@ -24,7 +24,7 @@ provides:
 requires:
   File::ShareDir: '1.00'
   HTML::Template: '0'
-  Module::Starter: '1.7'
+  Module::Starter: '1.76'
   perl: '5.008'
 resources:
   homepage: http://jaldhar.github.com/Module-Starter-Plugin-CGIApp/

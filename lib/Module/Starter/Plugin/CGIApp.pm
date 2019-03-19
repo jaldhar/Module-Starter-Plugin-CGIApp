@@ -28,7 +28,7 @@ use English qw( -no_match_vars );
 use File::Basename;
 use File::Path qw( mkpath );
 use File::Spec ();
-use Module::Starter::BuilderSet;
+use Module::Starter::BuilderSet 1.76;
 use HTML::Template;
 
 =head1 VERSION
@@ -465,7 +465,7 @@ sub _license_blurb {
     my $license_record = $self->_license_record();
 
     if ( defined $license_record ) {
-        if ( $license_record->{license} eq 'perl' ) {
+        if ( $license_record->meta_name eq 'perl' ) {
             $license_blurb = <<'EOT';
 This distribution is free software; you can redistribute it and/or modify it
 under the terms of either:
@@ -477,7 +477,7 @@ b) the Artistic License version 1.0 or a later version.
 EOT
         }
         else {
-            $license_blurb = $license_record->{blurb};
+            $license_blurb = $license_record->notice;
         }
     }
     else {
