@@ -26,7 +26,7 @@ my $builder = Module::Build->new(
     requires            => {
         'perl'                  => 5.008,
         'File::ShareDir'        => 0,
-        'Module::Starter'       => 1.70,
+        'Module::Starter'       => 1.76,
         'HTML::Template'        => 0,
     },
     meta_merge => {
